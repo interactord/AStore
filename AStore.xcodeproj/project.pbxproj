@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
 		62E936EE4F1C2581A05F153E /* Pods_AStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */; };
 		F426E0F4DDFF5242C4286288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426E47ECFB1834BADA8D320 /* Assets.xcassets */; };
 		F426E2E3E2170390C48237F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426EDE6E5243A3D769E535D /* ViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.release.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.release.xcconfig"; sourceTree = "<group>"; };
 		6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.debug.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.debug.xcconfig"; sourceTree = "<group>"; };
 		9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +57,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		29CE770F226AF5D200E19B9D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		F426E44D0D065FC69BBB665F = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 		F426E6B51BE95801A562E2F2 /* AStore */ = {
 			isa = PBXGroup;
 			children = (
+				29CE770F226AF5D200E19B9D /* Base */,
 				F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */,
 				F426E93D0C31D23080727742 /* Resources */,
 				F426EDE6E5243A3D769E535D /* ViewController.swift */,
@@ -204,6 +215,7 @@
 			files = (
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
 				F426E2E3E2170390C48237F7 /* ViewController.swift in Sources */,
+				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
