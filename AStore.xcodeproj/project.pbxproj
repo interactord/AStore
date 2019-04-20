@@ -12,6 +12,7 @@
 		F426E0F4DDFF5242C4286288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426E47ECFB1834BADA8D320 /* Assets.xcassets */; };
 		F426E2E3E2170390C48237F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426EDE6E5243A3D769E535D /* ViewController.swift */; };
 		F426E342B23B4903D1D6C6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F426E9B3673E57ADBDB5755E /* LaunchScreen.storyboard */; };
+		F426E810DE2CF9CF1F8D0547 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426EECD026296C13A5FF045 /* SearchResultCell.swift */; };
 		F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426EA4FF0F63D19F0F85FFC /* AppSearchController.swift */; };
 		F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		F426ED6ABE50140B68ADD9EB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		F426EDA8F060FC8A5611227F /* AStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F426EDE6E5243A3D769E535D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F426EECD026296C13A5FF045 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				F426E93D0C31D23080727742 /* Resources */,
 				F426EDE6E5243A3D769E535D /* ViewController.swift */,
 				F426E37EE02680597118FCA3 /* Controller */,
+				F426E99E620B26EAAD191E51 /* Views */,
 			);
 			path = AStore;
 			sourceTree = "<group>";
@@ -113,6 +116,14 @@
 				F426E9B3673E57ADBDB5755E /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F426E99E620B26EAAD191E51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F426EECD026296C13A5FF045 /* SearchResultCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				F426E2E3E2170390C48237F7 /* ViewController.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
+				F426E810DE2CF9CF1F8D0547 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
