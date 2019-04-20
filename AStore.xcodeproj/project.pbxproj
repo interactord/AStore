@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62E936EE4F1C2581A05F153E /* Pods_AStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */; };
 		F426E0F4DDFF5242C4286288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426E47ECFB1834BADA8D320 /* Assets.xcassets */; };
 		F426E2E3E2170390C48237F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426EDE6E5243A3D769E535D /* ViewController.swift */; };
 		F426E342B23B4903D1D6C6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F426E9B3673E57ADBDB5755E /* LaunchScreen.storyboard */; };
@@ -14,6 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.release.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.release.xcconfig"; sourceTree = "<group>"; };
+		6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.debug.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.debug.xcconfig"; sourceTree = "<group>"; };
+		9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F426E47ECFB1834BADA8D320 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F426E9B3673E57ADBDB5755E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -27,17 +31,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E936EE4F1C2581A05F153E /* Pods_AStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06E4B9FF780C06C92371CEA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */,
+				4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		084D408E15F578BE538711D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F426E44D0D065FC69BBB665F = {
 			isa = PBXGroup;
 			children = (
 				F426E4933FCC6CC5103DF10D /* Products */,
 				F426E6B51BE95801A562E2F2 /* AStore */,
+				06E4B9FF780C06C92371CEA2 /* Pods */,
+				084D408E15F578BE538711D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,9 +100,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F426E5CFEB69F1BADA2EC992 /* Build configuration list for PBXNativeTarget "AStore" */;
 			buildPhases = (
+				6427131E87791F1088072949 /* [CP] Check Pods Manifest.lock */,
 				F426E439371D04440761DA1C /* Sources */,
 				F426EA5A0A5928D3B190E08C /* Frameworks */,
 				F426EC831C572B6E89038FE3 /* Resources */,
+				299C05F9226AF258007916E4 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -95,14 +121,14 @@
 		F426E434D5BB33EA263FC016 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Scott Moon";
 			};
 			buildConfigurationList = F426EDAFC3E71D9EA5400091 /* Build configuration list for PBXProject "AStore" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -128,6 +154,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		299C05F9226AF258007916E4 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$CI\" == 'true' ]]; then\nexit 0\nfi\n\nif [[ -s \"${PODS_ROOT}/SwiftLint/swiftlint\" ]]; then\necho 'Linting...'\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\necho 'error: SwiftLint not installed, please read README first.'\nexit 1\nfi\n\n";
+		};
+		6427131E87791F1088072949 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AStore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F426E439371D04440761DA1C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -145,6 +214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -191,12 +261,14 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		F426EDAE5C25A78C7A027FC3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/AStore/Resources/Info.plist";
@@ -212,6 +284,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -266,11 +339,13 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		F426EF7898DA2CB91D661C35 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/AStore/Resources/Info.plist";
