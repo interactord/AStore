@@ -186,3 +186,12 @@ fastlane/test_output
 iOSInjectionProject/
 
 # End of https://www.gitignore.io/api/swift,macos,appcode
+\.idea/AStore\.iml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/vcs\.xml
+
+\.idea/xcode\.xml
