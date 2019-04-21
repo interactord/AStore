@@ -12,6 +12,9 @@
 		296ED62D226CC1FA00CB8624 /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */; };
 		296ED62F226CC35400CB8624 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED62E226CC35400CB8624 /* UILabel+Extension.swift */; };
 		296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED630226CC4E000CB8624 /* AppsHorizontalController.swift */; };
+		296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED632226CCA7000CB8624 /* AppRowCell.swift */; };
+		296ED635226CCB1300CB8624 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED634226CCB1300CB8624 /* UIImageView+Extension.swift */; };
+		296ED637226CCC2500CB8624 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED636226CCC2500CB8624 /* UIButton+Extension.swift */; };
 		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
 		29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D1226C506C005DF8BE /* SearchResult.swift */; };
 		29E799D5226C583E005DF8BE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D4226C583E005DF8BE /* Service.swift */; };
@@ -31,6 +34,9 @@
 		296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
 		296ED62E226CC35400CB8624 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		296ED630226CC4E000CB8624 /* AppsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalController.swift; sourceTree = "<group>"; };
+		296ED632226CCA7000CB8624 /* AppRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowCell.swift; sourceTree = "<group>"; };
+		296ED634226CCB1300CB8624 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		296ED636226CCC2500CB8624 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		29E799D1226C506C005DF8BE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		29E799D4226C583E005DF8BE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */,
+				296ED632226CCA7000CB8624 /* AppRowCell.swift */,
 			);
 			path = Apps;
 			sourceTree = "<group>";
@@ -166,6 +173,8 @@
 			children = (
 				F426E19C48CB1766A16BEB1E /* UIView+Layout.swift */,
 				296ED62E226CC35400CB8624 /* UILabel+Extension.swift */,
+				296ED634226CCB1300CB8624 /* UIImageView+Extension.swift */,
+				296ED636226CCC2500CB8624 /* UIButton+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -322,12 +331,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296ED635226CCB1300CB8624 /* UIImageView+Extension.swift in Sources */,
 				296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */,
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
 				296ED62D226CC1FA00CB8624 /* AppsGroupCell.swift in Sources */,
 				29E799D5226C583E005DF8BE /* Service.swift in Sources */,
+				296ED637226CCC2500CB8624 /* UIButton+Extension.swift in Sources */,
 				296ED627226CC06500CB8624 /* AppsController.swift in Sources */,
 				29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */,
+				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
