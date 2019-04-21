@@ -6,7 +6,7 @@
 import UIKit
 import SDWebImage
 
-class AppSearchController: UICollectionViewController {
+class AppSearchController: BaseListController {
 
   private let cellId = "cellID"
   private let searchController = UISearchController(searchResultsController: nil)
@@ -55,14 +55,6 @@ class AppSearchController: UICollectionViewController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     enterSearchTermLabel.isHidden = !appResults.isEmpty
     return appResults.count
-  }
-
-  init() {
-    super.init(collectionViewLayout: UICollectionViewFlowLayout())
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
 
 }
