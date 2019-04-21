@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppSearchController: UICollectionViewController {
 
@@ -33,9 +34,6 @@ class AppSearchController: UICollectionViewController {
       }
 
     }
-
-    /// we need to get back our search results somehow
-    // use a completion block
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -44,14 +42,7 @@ class AppSearchController: UICollectionViewController {
     guard let searchResultCell = cell as? SearchResultCell else {
       return cell
     }
-
-    let appResult = appResults[indexPath.item]
-    searchResultCell.nameLabel.text = appResult.trackName
-    searchResultCell.categoryLabel.text = appResult.primaryGenreName
-    searchResultCell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
-
-//    searchResultCell.appIconImageView
-//    searchResultCell.screenshot1ImageView
+    searchResultCell.appResult = appResults[indexPath.item]
     return searchResultCell
   }
 
