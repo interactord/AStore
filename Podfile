@@ -6,6 +6,5 @@ target 'AStore' do
 
   #Lint
   pod 'SwiftLint'
-  pod 'SDWebImage', '~> 5.0'
 
 end

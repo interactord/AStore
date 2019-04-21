@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
-		29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D1226C506C005DF8BE /* SearchResult.swift */; };
-		29E799D5226C583E005DF8BE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D4226C583E005DF8BE /* Service.swift */; };
 		62E936EE4F1C2581A05F153E /* Pods_AStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */; };
 		F426E0F4DDFF5242C4286288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F426E47ECFB1834BADA8D320 /* Assets.xcassets */; };
 		F426E342B23B4903D1D6C6EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F426E9B3673E57ADBDB5755E /* LaunchScreen.storyboard */; };
@@ -22,8 +20,6 @@
 
 /* Begin PBXFileReference section */
 		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
-		29E799D1226C506C005DF8BE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		29E799D4226C583E005DF8BE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.release.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.release.xcconfig"; sourceTree = "<group>"; };
 		6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.debug.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.debug.xcconfig"; sourceTree = "<group>"; };
 		9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,22 +71,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		29E799D0226C5061005DF8BE /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				29E799D1226C506C005DF8BE /* SearchResult.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		29E799D3226C5822005DF8BE /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				29E799D4226C583E005DF8BE /* Service.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		F426E37EE02680597118FCA3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,8 +100,6 @@
 		F426E6B51BE95801A562E2F2 /* AStore */ = {
 			isa = PBXGroup;
 			children = (
-				29E799D3226C5822005DF8BE /* Services */,
-				29E799D0226C5061005DF8BE /* Models */,
 				29CE770F226AF5D200E19B9D /* Base */,
 				F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */,
 				F426E93D0C31D23080727742 /* Resources */,
@@ -171,7 +149,6 @@
 				F426EA5A0A5928D3B190E08C /* Frameworks */,
 				F426EC831C572B6E89038FE3 /* Resources */,
 				299C05F9226AF258007916E4 /* Swift Lint */,
-				75D481ABDD5AB849E19E16E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,28 +239,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75D481ABDD5AB849E19E16E6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AStore/Pods-AStore-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AStore/Pods-AStore-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -292,8 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
-				29E799D5226C583E005DF8BE /* Service.swift in Sources */,
-				29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
 				F426E810DE2CF9CF1F8D0547 /* SearchResultCell.swift in Sources */,
