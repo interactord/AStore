@@ -8,21 +8,55 @@ import UIKit
 class AppSearchController: UICollectionViewController {
 
   private let cellId = "cellID"
+  private var appResults = [SearchResultResponse]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     collectionView.backgroundColor = .white
     collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+
+    fetchITunesApps()
+  }
+
+  private func fetchITunesApps() {
+
+    Service.shared.fetchApps { result, err in
+      if let err = err {
+        print("Failed to fetch apps:", err)
+        return
+      }
+
+      self.appResults = result
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
+
+    }
+
+    /// we need to get back our search results somehow
+    // use a completion block
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-    return cell
+
+    guard let searchResultCell = cell as? SearchResultCell else {
+      return cell
+    }
+
+    let appResult = appResults[indexPath.item]
+    searchResultCell.nameLabel.text = appResult.trackName
+    searchResultCell.categoryLabel.text = appResult.primaryGenreName
+    searchResultCell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+
+//    searchResultCell.appIconImageView
+//    searchResultCell.screenshot1ImageView
+    return searchResultCell
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return appResults.count
   }
 
   init() {
