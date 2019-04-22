@@ -12,6 +12,7 @@ class AppDetailController: BaseListController {
 
   private let detailCellId = "detailCellId"
   private let previewCellId = "previewCellId"
+  private let reviewCellId = "reviewCellId"
 
   private var app: SearchResultResponse?
   var appId: String! {
@@ -39,17 +40,19 @@ class AppDetailController: BaseListController {
     collectionView.backgroundColor = .white
     collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detailCellId)
     collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewCellId)
+    collectionView.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewCellId)
 
     navigationItem.largeTitleDisplayMode = .never
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 2
+    return 3
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if indexPath.item == 0 {
+
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath)
       guard let detailCell = cell as? AppDetailCell else {
         return cell
@@ -57,13 +60,24 @@ class AppDetailController: BaseListController {
       detailCell.app = app
 
       return detailCell
-    } else {
+
+    } else if indexPath.item == 1 {
+
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewCellId, for: indexPath)
       guard let previewCell = cell as? PreviewCell else {
         return cell
       }
       previewCell.horizontalController.app = app
       return previewCell
+
+    } else {
+
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath)
+      guard let reviewRowCell = cell as? ReviewRowCell else {
+        return cell
+      }
+      return reviewRowCell
+
     }
   }
 }
@@ -71,17 +85,25 @@ class AppDetailController: BaseListController {
 extension AppDetailController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+    let fullWidth = view.frame.width
+    var height: CGFloat = 280
+
     if indexPath.item == 0 {
+
       /// calculate the necessary size for our cell somehow
       let size = CGSize(width: view.frame.width, height: 1_000)
       let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: size.width, height: size.height))
       dummyCell.app = app
       dummyCell.layoutIfNeeded()
       let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: size.height))
+      height = estimatedSize.height
 
-      return .init(width: view.frame.width, height: estimatedSize.height)
+    } else if indexPath.item == 1 {
+      height = 500
     } else {
-      return .init(width: view.frame.width, height: 500)
+      height = 200
     }
+
+    return .init(width: fullWidth, height: height)
   }
 }

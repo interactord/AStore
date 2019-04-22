@@ -29,6 +29,9 @@
 		29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */; };
 		29DCFFF7226DD2B300ECE8D3 /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF6226DD2B300ECE8D3 /* PreviewScreenshotsController.swift */; };
 		29DCFFF9226DD36B00ECE8D3 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF8226DD36B00ECE8D3 /* ScreenshotCell.swift */; };
+		29DCFFFB226DD85600ECE8D3 /* ReviewRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFFA226DD85600ECE8D3 /* ReviewRowCell.swift */; };
+		29DCFFFD226DDA0700ECE8D3 /* ReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFFC226DDA0700ECE8D3 /* ReviewsController.swift */; };
+		29DCFFFF226DDBBC00ECE8D3 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFFE226DDBBC00ECE8D3 /* ReviewCell.swift */; };
 		29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D1226C506C005DF8BE /* SearchResult.swift */; };
 		29E799D5226C583E005DF8BE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D4226C583E005DF8BE /* Service.swift */; };
 		62E936EE4F1C2581A05F153E /* Pods_AStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */; };
@@ -64,6 +67,9 @@
 		29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		29DCFFF6226DD2B300ECE8D3 /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
 		29DCFFF8226DD36B00ECE8D3 /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
+		29DCFFFA226DD85600ECE8D3 /* ReviewRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowCell.swift; sourceTree = "<group>"; };
+		29DCFFFC226DDA0700ECE8D3 /* ReviewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsController.swift; sourceTree = "<group>"; };
+		29DCFFFE226DDBBC00ECE8D3 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		29E799D1226C506C005DF8BE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		29E799D4226C583E005DF8BE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AStore.release.xcconfig"; path = "Target Support Files/Pods-AStore/Pods-AStore.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				29AC416C226DB829003ED2E9 /* AppDetailController.swift */,
+				29DCFFFC226DDA0700ECE8D3 /* ReviewsController.swift */,
 				29DCFFF6226DD2B300ECE8D3 /* PreviewScreenshotsController.swift */,
 			);
 			path = Details;
@@ -153,8 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				29AC416F226DBD23003ED2E9 /* AppDetailCell.swift */,
+				29DCFFFA226DD85600ECE8D3 /* ReviewRowCell.swift */,
 				29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */,
 				29DCFFF8226DD36B00ECE8D3 /* ScreenshotCell.swift */,
+				29DCFFFE226DDBBC00ECE8D3 /* ReviewCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -401,9 +410,11 @@
 				29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */,
 				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
 				29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */,
+				29DCFFFD226DDA0700ECE8D3 /* ReviewsController.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29AC415B226CD528003ED2E9 /* AppsPageHeader.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
+				29DCFFFB226DD85600ECE8D3 /* ReviewRowCell.swift in Sources */,
 				29AC415F226CD6AE003ED2E9 /* AppsHeaderHorizontalController.swift in Sources */,
 				29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
@@ -413,6 +424,7 @@
 				29DCFFF9226DD36B00ECE8D3 /* ScreenshotCell.swift in Sources */,
 				29AC4161226CD815003ED2E9 /* AppsHeaderCell.swift in Sources */,
 				F426E810DE2CF9CF1F8D0547 /* SearchResultCell.swift in Sources */,
+				29DCFFFF226DDBBC00ECE8D3 /* ReviewCell.swift in Sources */,
 				F426E5171AD6C0952808A59D /* UIView+Layout.swift in Sources */,
 				F426EAD3E48AD91F9007299F /* VerticalStackView.swift in Sources */,
 			);
