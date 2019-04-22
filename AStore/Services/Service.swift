@@ -75,4 +75,27 @@ class Service {
     }.resume()
   }
 
+  func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
+    let urlString = "https://gist.githubusercontent.com/interactord/406f7daa408f292e6d1fced9783e1033/raw/93b2a7e9dd8452a3e0ed4ec01d41c3d1584a8cdd/appsHeader.json"
+    guard let url = URL(string: urlString) else {
+      return
+    }
+
+    URLSession.shared.dataTask(with: url) { data, _, err in
+      if let err = err {
+        completion(nil, err)
+        return
+      }
+
+      do {
+        guard let data = data else { return }
+        let socialApps = try JSONDecoder().decode([SocialApp].self, from: data)
+        completion(socialApps, nil)
+      } catch {
+        completion(nil, error)
+      }
+    }.resume()
+
+  }
+
 }

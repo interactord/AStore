@@ -13,8 +13,17 @@ class AppsPageController: BaseListController {
   private let cellId = "cellId"
   private let headerId = "headerId"
 
+  let activityIndicatorView: UIActivityIndicatorView = {
+    let aiv = UIActivityIndicatorView(style: .whiteLarge)
+    aiv.color = .black
+    aiv.startAnimating()
+    aiv.hidesWhenStopped = true
+    return aiv
+  }()
+
   private var editorsChoicesGames: AppGroup?
   private var groups = [AppGroup]()
+  private var socialApps = [SocialApp]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,11 +32,19 @@ class AppsPageController: BaseListController {
     collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
 
+    view.addSubview(activityIndicatorView)
+    activityIndicatorView.fillSuperview()
+
     fetchData()
   }
 
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+    guard let header = view as? AppsPageHeader else {
+      return view
+    }
+    header.appsHeaderHorizontalController.socialApps = self.socialApps
+    header.appsHeaderHorizontalController.collectionView.reloadData()
     return header
   }
 
@@ -86,9 +103,20 @@ class AppsPageController: BaseListController {
       group3 = appGroup
     }
 
+    dispathGroup.enter()
+    Service.shared.fetchSocialApps { apps, err in
+      dispathGroup.leave()
+      if let err = err {
+        print("Fail fetched social app", err)
+        return
+      }
+      self.socialApps = apps ?? []
+    }
+
     /// completion
     dispathGroup.notify(queue: .main) {
       print("completed your dispatch group task...")
+      self.activityIndicatorView.stopAnimating()
       if let group = group1 {
         self.groups.append(group)
       }
@@ -113,7 +141,7 @@ extension AppsPageController: UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-    return .init(width: view.frame.width, height: 0)
+    return .init(width: view.frame.width, height: 300)
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
