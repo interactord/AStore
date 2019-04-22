@@ -14,6 +14,7 @@ class AppsPageController: BaseListController {
   private let headerId = "headerId"
 
   private var editorsChoicesGames: AppGroup?
+  private var groups = [AppGroup]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,7 +32,7 @@ class AppsPageController: BaseListController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 1
+    return groups.count
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -39,24 +40,71 @@ class AppsPageController: BaseListController {
     guard let appsGroupCell = cell as? AppsGroupCell else {
       return cell
     }
-    appsGroupCell.titleLabel.text = editorsChoicesGames?.feed.title
-    appsGroupCell.horizontalController.appGroup = editorsChoicesGames
-    appsGroupCell.horizontalController.collectionView.reloadData()AStore/Controller/Apps/AppsHorizontalController.swift
+    let appGroup = groups[indexPath.item]
+    appsGroupCell.titleLabel.text = appGroup.feed.title
+    appsGroupCell.horizontalController.appGroup = appGroup
+    appsGroupCell.horizontalController.collectionView.reloadData()
     return appsGroupCell
   }
 
   private func fetchData() {
+
+    var group1: AppGroup?
+    var group2: AppGroup?
+    var group3: AppGroup?
+
+    /// help you async your data fetches together
+    let dispathGroup = DispatchGroup()
+
+    dispathGroup.enter()
     Service.shared.fetchGames { appGroup, err in
+      dispathGroup.leave()
       if let err = err {
         print("Fail fetched app group", err)
+        return
       }
-      self.editorsChoicesGames = appGroup
-      DispatchQueue.main.async {
-        self.collectionView.reloadData()
-      }
+      group1 = appGroup
     }
-  }
 
+    dispathGroup.enter()
+    Service.shared.fetchTopGrossing { appGroup, err in
+      dispathGroup.leave()
+      if let err = err {
+        print("Fail fetched app group", err)
+        return
+      }
+      group2 = appGroup
+    }
+
+    dispathGroup.enter()
+    Service.shared.fetchAppGroup(urlString: "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/explicit.json") { appGroup, err in
+      dispathGroup.leave()
+      if let err = err {
+        print("Fail fetched app group", err)
+        return
+      }
+      group3 = appGroup
+    }
+
+    /// completion
+    dispathGroup.notify(queue: .main) {
+      print("completed your dispatch group task...")
+      if let group = group1 {
+        self.groups.append(group)
+      }
+
+      if let group = group2 {
+        self.groups.append(group)
+      }
+
+      if let group = group3 {
+        self.groups.append(group)
+      }
+
+      self.collectionView.reloadData()
+    }
+
+  }
 }
 
 extension AppsPageController: UICollectionViewDelegateFlowLayout {
@@ -65,7 +113,7 @@ extension AppsPageController: UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-    return .init(width: view.frame.width, height: 300)
+    return .init(width: view.frame.width, height: 0)
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
