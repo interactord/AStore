@@ -57,6 +57,11 @@ class AppSearchController: BaseListController {
     return appResults.count
   }
 
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let appId = appResults[indexPath.item].trackId
+    let appDetailController = AppDetailController(appId: "\(appId)")
+    navigationController?.pushViewController(appDetailController, animated: true)
+  }
 }
 
 extension AppSearchController: UICollectionViewDelegateFlowLayout {
@@ -80,7 +85,7 @@ extension AppSearchController: UISearchBarDelegate {
       Service.shared.fetchApps(searchTerm: searchText) { res, err in
 
         if let err = err {
-          print("Fail fetched search app", err)
+          print("Failed to apps:", err)
           return
         }
 
