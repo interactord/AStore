@@ -14,6 +14,12 @@ class ReviewsController: HorizontalSnappingController {
   private let cellSpacing: CGFloat = 40
   private let padding: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
 
+  var reviews: Reviews? {
+    didSet {
+      self.collectionView.reloadData()
+    }
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = .white
@@ -22,14 +28,23 @@ class ReviewsController: HorizontalSnappingController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return reviews?.feed.entry.count ?? 0
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-    guard let reviewCell = cell as? ReviewCell else {
-      return cell
+
+    guard
+      let reviewCell = cell as? ReviewCell,
+      let entry = reviews?.feed.entry[indexPath.item]
+      else {
+        return cell
     }
+
+    reviewCell.authorLabel.text = entry.author.name.label
+    reviewCell.titleLabel.text = entry.title.label
+    reviewCell.bodyLabel.text = entry.content.label
+
     return reviewCell
   }
 

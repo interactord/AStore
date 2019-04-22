@@ -26,6 +26,7 @@
 		29AC4170226DBD23003ED2E9 /* AppDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC416F226DBD23003ED2E9 /* AppDetailCell.swift */; };
 		29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC4171226DC1A9003ED2E9 /* UIStackView+Extenison.swift */; };
 		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
+		29DC0001226DE12500ECE8D3 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC0000226DE12500ECE8D3 /* Reviews.swift */; };
 		29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */; };
 		29DCFFF7226DD2B300ECE8D3 /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF6226DD2B300ECE8D3 /* PreviewScreenshotsController.swift */; };
 		29DCFFF9226DD36B00ECE8D3 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF8226DD36B00ECE8D3 /* ScreenshotCell.swift */; };
@@ -64,6 +65,7 @@
 		29AC416F226DBD23003ED2E9 /* AppDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailCell.swift; sourceTree = "<group>"; };
 		29AC4171226DC1A9003ED2E9 /* UIStackView+Extenison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extenison.swift"; sourceTree = "<group>"; };
 		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		29DC0000226DE12500ECE8D3 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		29DCFFF6226DD2B300ECE8D3 /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
 		29DCFFF8226DD36B00ECE8D3 /* ScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				29E799D1226C506C005DF8BE /* SearchResult.swift */,
 				29AC4164226D6591003ED2E9 /* SocialApp.swift */,
 				29AC4162226D486E003ED2E9 /* AppGroup.swift */,
+				29DC0000226DE12500ECE8D3 /* Reviews.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */,
 				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
 				29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */,
+				29DC0001226DE12500ECE8D3 /* Reviews.swift in Sources */,
 				29DCFFFD226DDA0700ECE8D3 /* ReviewsController.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29AC415B226CD528003ED2E9 /* AppsPageHeader.swift in Sources */,
