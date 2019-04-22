@@ -22,6 +22,7 @@
 		29AC4165226D6591003ED2E9 /* SocialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC4164226D6591003ED2E9 /* SocialApp.swift */; };
 		29AC4167226D7AC6003ED2E9 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC4166226D7AC6003ED2E9 /* HorizontalSnappingController.swift */; };
 		29AC4169226D87A8003ED2E9 /* BetterSanppingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC4168226D87A8003ED2E9 /* BetterSanppingLayout.swift */; };
+		29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC416C226DB829003ED2E9 /* AppDetailController.swift */; };
 		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
 		29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D1226C506C005DF8BE /* SearchResult.swift */; };
 		29E799D5226C583E005DF8BE /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E799D4226C583E005DF8BE /* Service.swift */; };
@@ -51,6 +52,7 @@
 		29AC4164226D6591003ED2E9 /* SocialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApp.swift; sourceTree = "<group>"; };
 		29AC4166226D7AC6003ED2E9 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		29AC4168226D87A8003ED2E9 /* BetterSanppingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterSanppingLayout.swift; sourceTree = "<group>"; };
+		29AC416C226DB829003ED2E9 /* AppDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailController.swift; sourceTree = "<group>"; };
 		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		29E799D1226C506C005DF8BE /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		29E799D4226C583E005DF8BE /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		296ED625226CC05E00CB8624 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				29AC416B226DB813003ED2E9 /* Details */,
 				29AC415E226CD6AE003ED2E9 /* AppsHeaderHorizontalController.swift */,
 				296ED626226CC06500CB8624 /* AppsPageController.swift */,
 				296ED630226CC4E000CB8624 /* AppsHorizontalController.swift */,
@@ -124,6 +127,14 @@
 				29AC415A226CD528003ED2E9 /* AppsPageHeader.swift */,
 			);
 			path = Apps;
+			sourceTree = "<group>";
+		};
+		29AC416B226DB813003ED2E9 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				29AC416C226DB829003ED2E9 /* AppDetailController.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		29E799D0226C5061005DF8BE /* Models */ = {
@@ -364,6 +375,7 @@
 				29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */,
 				29AC4167226D7AC6003ED2E9 /* HorizontalSnappingController.swift in Sources */,
 				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
+				29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29AC415B226CD528003ED2E9 /* AppsPageHeader.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
