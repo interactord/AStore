@@ -44,7 +44,6 @@ class AppDetailController: BaseListController {
         }
 
         self.reviews = reviews
-
         DispatchQueue.main.async {
           self.collectionView.reloadData()
         }
@@ -119,9 +118,13 @@ extension AppDetailController: UICollectionViewDelegateFlowLayout {
     } else if indexPath.item == 1 {
       height = 500
     } else {
-      height = 200
+      height = 280
     }
 
     return .init(width: fullWidth, height: height)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return .init(top: 0, left: 0, bottom: 10, right: 0)
   }
 }
