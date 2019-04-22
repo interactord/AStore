@@ -19,6 +19,8 @@ class AppsPageController: BaseListController {
 
     collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+
+    fetchData()
   }
 
   override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -36,6 +38,15 @@ class AppsPageController: BaseListController {
       return cell
     }
     return appsGroupCell
+  }
+
+  private func fetchData() {
+    Service.shared.fetchGames { appGroup, err in
+      if let err = err {
+        print("Fail fetched app group", err)
+      }
+      print(appGroup?.feed.results)
+    }
   }
 
 }
