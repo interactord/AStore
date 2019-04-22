@@ -77,14 +77,14 @@ extension AppSearchController: UISearchBarDelegate {
     timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
 
       /// this will actually fire my search
-      Service.shared.fetchApps(searchTerm: searchText) { result, err in
+      Service.shared.fetchApps(searchTerm: searchText) { res, err in
 
         if let err = err {
           print("Fail fetched search app", err)
           return
         }
 
-        self.appResults = result
+        self.appResults = res?.results ?? []
         DispatchQueue.main.async {
           self.collectionView.reloadData()
         }
