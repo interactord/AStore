@@ -11,7 +11,7 @@ import UIKit
 class AppDetailController: BaseListController {
 
   private let detailCellId = "detailCellId"
-
+  private var app: SearchResultResponse?
   var appId: String! {
     didSet {
       guard let appId = appId else {
@@ -23,9 +23,10 @@ class AppDetailController: BaseListController {
           print("failed to app detail", err)
           return
         }
-
-        if let result = result {
-          print(result.results.first?.releaseNotes ?? "")
+        let app = result?.results.first
+        self.app = app
+        DispatchQueue.main.async {
+          self.collectionView.reloadData()
         }
       }
     }
@@ -45,12 +46,25 @@ class AppDetailController: BaseListController {
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath)
-    return cell
+    guard let detailCell = cell as? AppDetailCell else {
+      return cell
+    }
+    detailCell.app = app
+
+    return detailCell
   }
 }
 
 extension AppDetailController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return .init(width: view.frame.width, height: 300)
+
+    /// calculate the necessary size for our cell somehow
+    let size = CGSize(width: view.frame.width, height: 1_000)
+    let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: size.width, height: size.height))
+    dummyCell.app = app
+    dummyCell.layoutIfNeeded()
+    let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: size.height))
+
+    return .init(width: view.frame.width, height: estimatedSize.height)
   }
 }
