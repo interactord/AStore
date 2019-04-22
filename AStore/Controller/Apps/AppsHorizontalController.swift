@@ -8,11 +8,14 @@
 
 import UIKit
 
+import SDWebImage
+
 class AppsHorizontalController: BaseListController {
 
   private let cellId = "cellId"
   private let topBottomPadding: CGFloat = 12
   private let lineSpacing: CGFloat = 10
+  var appGroup: AppGroup?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,12 +29,24 @@ class AppsHorizontalController: BaseListController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return appGroup?.feed.results.count ?? 0
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-    return cell
+
+    guard
+      let appRowCell = cell as? AppRowCell,
+      let app = appGroup?.feed.results[indexPath.item]
+      else {
+        return cell
+    }
+
+    appRowCell.nameLabel.text = app.name
+    appRowCell.companyLabel.text = app.artistName
+    appRowCell.imageView.sd_setImage(with: URL(string: app.artworkUrl100))
+
+    return appRowCell
   }
 
 }

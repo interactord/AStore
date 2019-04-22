@@ -13,6 +13,8 @@ class AppsPageController: BaseListController {
   private let cellId = "cellId"
   private let headerId = "headerId"
 
+  private var editorsChoicesGames: AppGroup?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     collectionView.backgroundColor = .white
@@ -29,7 +31,7 @@ class AppsPageController: BaseListController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 5
+    return 1
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,6 +39,9 @@ class AppsPageController: BaseListController {
     guard let appsGroupCell = cell as? AppsGroupCell else {
       return cell
     }
+    appsGroupCell.titleLabel.text = editorsChoicesGames?.feed.title
+    appsGroupCell.horizontalController.appGroup = editorsChoicesGames
+    appsGroupCell.horizontalController.collectionView.reloadData()AStore/Controller/Apps/AppsHorizontalController.swift
     return appsGroupCell
   }
 
@@ -45,7 +50,10 @@ class AppsPageController: BaseListController {
       if let err = err {
         print("Fail fetched app group", err)
       }
-      print(appGroup?.feed.results)
+      self.editorsChoicesGames = appGroup
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
     }
   }
 
