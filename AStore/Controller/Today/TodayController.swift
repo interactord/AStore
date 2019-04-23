@@ -12,6 +12,7 @@ class TodayController: BaseListController {
 
   private let cellId = "cellId"
   var startingFrame: CGRect?
+  var appFullScreenController: UIViewController!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -44,14 +45,25 @@ class TodayController: BaseListController {
     }
 
     self.startingFrame = startingFrame
-    let redView = UIView()
-    redView.backgroundColor = .red
+
+    let appFullScreenController = AppFullScreenController()
+    guard let redView = appFullScreenController.view else {
+      return
+    }
     redView.addGestureRecognizer(
       UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView))
     )
     redView.frame = startingFrame
     redView.layer.cornerRadius = 16
     view.addSubview(redView)
+    addChild(appFullScreenController)
+
+    self.appFullScreenController = appFullScreenController
+
+    /// why i don't use a transition delegate?
+
+    /// we're using frames for animation
+    /// frame aren't reliable enough for animations
 
     UIView.animate(
       withDuration: 0.7,
@@ -61,6 +73,8 @@ class TodayController: BaseListController {
       options: .curveEaseOut,
       animations: {
         redView.frame = self.view.frame
+
+        self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
       }
     )
   }
@@ -76,9 +90,11 @@ class TodayController: BaseListController {
       options: .curveEaseOut,
       animations: {
         getsture.view?.frame = self.startingFrame ?? .zero
+        self.tabBarController?.tabBar.transform = .identity
       },
       completion: { _ in
         getsture.view?.removeFromSuperview()
+        self.appFullScreenController.removeFromParent()
       }
     )
 
