@@ -50,7 +50,7 @@ class TodayController: BaseListController {
       description: "",
       backgroundColor: .white,
       cellType: .multiple
-    ),
+    )
   ]
 
   var topConstraint: NSLayoutConstraint?
