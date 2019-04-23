@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CB226F1C0200D295A5 /* TodayController.swift */; };
+		292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CE226F1C7900D295A5 /* TodayCell.swift */; };
 		296ED627226CC06500CB8624 /* AppsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED626226CC06500CB8624 /* AppsPageController.swift */; };
 		296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED628226CC0F600CB8624 /* BaseListController.swift */; };
 		296ED62D226CC1FA00CB8624 /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		292A22CB226F1C0200D295A5 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
+		292A22CE226F1C7900D295A5 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		296ED626226CC06500CB8624 /* AppsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageController.swift; sourceTree = "<group>"; };
 		296ED628226CC0F600CB8624 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
@@ -115,6 +119,22 @@
 				9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		292A22CA226F1BF500D295A5 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				292A22CB226F1C0200D295A5 /* TodayController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		292A22CD226F1C6C00D295A5 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				292A22CE226F1C7900D295A5 /* TodayCell.swift */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 		296ED625226CC05E00CB8624 /* Apps */ = {
@@ -192,6 +212,7 @@
 		F426E37EE02680597118FCA3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				292A22CA226F1BF500D295A5 /* Today */,
 				296ED62A226CC13F00CB8624 /* Search */,
 				296ED625226CC05E00CB8624 /* Apps */,
 				29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */,
@@ -222,13 +243,13 @@
 		F426E6B51BE95801A562E2F2 /* AStore */ = {
 			isa = PBXGroup;
 			children = (
-				29E799D3226C5822005DF8BE /* Services */,
-				29E799D0226C5061005DF8BE /* Models */,
 				F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */,
-				F426E93D0C31D23080727742 /* Resources */,
 				F426E37EE02680597118FCA3 /* Controller */,
-				F426E99E620B26EAAD191E51 /* Views */,
 				F426E796F62C21390078C9AD /* Helpers */,
+				29E799D0226C5061005DF8BE /* Models */,
+				F426E93D0C31D23080727742 /* Resources */,
+				29E799D3226C5822005DF8BE /* Services */,
+				F426E99E620B26EAAD191E51 /* Views */,
 			);
 			path = AStore;
 			sourceTree = "<group>";
@@ -259,6 +280,7 @@
 		F426E99E620B26EAAD191E51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				292A22CD226F1C6C00D295A5 /* Today */,
 				296ED62B226CC1ED00CB8624 /* Apps */,
 				F426EECD026296C13A5FF045 /* SearchResultCell.swift */,
 				F426E453368FA766E9D914E6 /* VerticalStackView.swift */,
@@ -399,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				296ED635226CCB1300CB8624 /* UIImageView+Extension.swift in Sources */,
+				292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */,
 				29AC4165226D6591003ED2E9 /* SocialApp.swift in Sources */,
 				296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */,
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
@@ -417,6 +440,7 @@
 				29DCFFFD226DDA0700ECE8D3 /* ReviewsController.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29AC415B226CD528003ED2E9 /* AppsPageHeader.swift in Sources */,
+				292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */,
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 				29DCFFFB226DD85600ECE8D3 /* ReviewRowCell.swift in Sources */,
 				29AC415F226CD6AE003ED2E9 /* AppsHeaderHorizontalController.swift in Sources */,
