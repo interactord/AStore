@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29108599226F740D0059F863 /* TodayMultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29108598226F740D0059F863 /* TodayMultipleAppCell.swift */; };
+		2910859B226F7A2F0059F863 /* BaseTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859A226F7A2F0059F863 /* BaseTodayCell.swift */; };
 		292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CB226F1C0200D295A5 /* TodayController.swift */; };
 		292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CE226F1C7900D295A5 /* TodayCell.swift */; };
 		292A22D1226F27A400D295A5 /* AppFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D0226F27A400D295A5 /* AppFullscreenController.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29108598226F740D0059F863 /* TodayMultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppCell.swift; sourceTree = "<group>"; };
+		2910859A226F7A2F0059F863 /* BaseTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTodayCell.swift; sourceTree = "<group>"; };
 		292A22CB226F1C0200D295A5 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
 		292A22CE226F1C7900D295A5 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		292A22D0226F27A400D295A5 /* AppFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenController.swift; sourceTree = "<group>"; };
@@ -143,9 +147,11 @@
 		292A22CD226F1C6C00D295A5 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				29108598226F740D0059F863 /* TodayMultipleAppCell.swift */,
 				292A22CE226F1C7900D295A5 /* TodayCell.swift */,
 				292A22D4226F358D00D295A5 /* AppFullscreenHEaderCell.swift */,
 				292A22D2226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift */,
+				2910859A226F7A2F0059F863 /* BaseTodayCell.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				29E799D5226C583E005DF8BE /* Service.swift in Sources */,
 				296ED637226CCC2500CB8624 /* UIButton+Extension.swift in Sources */,
 				296ED627226CC06500CB8624 /* AppsPageController.swift in Sources */,
+				2910859B226F7A2F0059F863 /* BaseTodayCell.swift in Sources */,
 				29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */,
 				29AC4167226D7AC6003ED2E9 /* HorizontalSnappingController.swift in Sources */,
 				29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */,
@@ -468,6 +475,7 @@
 				296ED62F226CC35400CB8624 /* UILabel+Extension.swift in Sources */,
 				29AC4163226D486E003ED2E9 /* AppGroup.swift in Sources */,
 				292A22D1226F27A400D295A5 /* AppFullscreenController.swift in Sources */,
+				29108599226F740D0059F863 /* TodayMultipleAppCell.swift in Sources */,
 				29AC4170226DBD23003ED2E9 /* AppDetailCell.swift in Sources */,
 				29DCFFF9226DD36B00ECE8D3 /* ScreenshotCell.swift in Sources */,
 				29AC4161226CD815003ED2E9 /* AppsHeaderCell.swift in Sources */,
