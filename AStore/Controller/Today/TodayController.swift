@@ -11,6 +11,7 @@ import UIKit
 class TodayController: BaseListController {
 
   private let cellId = "cellId"
+  var startingFrame: CGRect?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +35,53 @@ class TodayController: BaseListController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print("animate fullscreen somehow...")
+
+    guard
+      let cell = collectionView.cellForItem(at: indexPath),
+      let startingFrame = cell.superview?.convert(cell.frame, to: nil) /// absolute coordinates of cell
+      else {
+        return
+    }
+
+    self.startingFrame = startingFrame
+    let redView = UIView()
+    redView.backgroundColor = .red
+    redView.addGestureRecognizer(
+      UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView))
+    )
+    redView.frame = startingFrame
+    redView.layer.cornerRadius = 16
+    view.addSubview(redView)
+
+    UIView.animate(
+      withDuration: 0.7,
+      delay: 0,
+      usingSpringWithDamping: 0.7,
+      initialSpringVelocity: 0.7,
+      options: .curveEaseOut,
+      animations: {
+        redView.frame = self.view.frame
+      }
+    )
+  }
+
+  @objc func handleRemoveRedView(getsture: UITapGestureRecognizer) {
+
+    /// access startingFrame
+    UIView.animate(
+      withDuration: 0.7,
+      delay: 0,
+      usingSpringWithDamping: 0.7,
+      initialSpringVelocity: 0.7,
+      options: .curveEaseOut,
+      animations: {
+        getsture.view?.frame = self.startingFrame ?? .zero
+      },
+      completion: { _ in
+        getsture.view?.removeFromSuperview()
+      }
+    )
+
   }
 }
 
