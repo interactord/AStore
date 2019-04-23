@@ -12,7 +12,12 @@ class TodayController: BaseListController {
 
   private let cellId = "cellId"
   var startingFrame: CGRect?
-  var appFullScreenController: UIViewController!
+  var appFullscreenController: AppFullscreenController!
+
+  var topConstraint: NSLayoutConstraint?
+  var leadingConstraint: NSLayoutConstraint?
+  var widthConstraint: NSLayoutConstraint?
+  var heightConstraint: NSLayoutConstraint?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,8 +51,8 @@ class TodayController: BaseListController {
 
     self.startingFrame = startingFrame
 
-    let appFullScreenController = AppFullScreenController()
-    guard let redView = appFullScreenController.view else {
+    let appFullscreenController = AppFullscreenController()
+    guard let redView = appFullscreenController.view else {
       return
     }
     redView.addGestureRecognizer(
@@ -56,14 +61,21 @@ class TodayController: BaseListController {
     redView.frame = startingFrame
     redView.layer.cornerRadius = 16
     view.addSubview(redView)
-    addChild(appFullScreenController)
+    addChild(appFullscreenController)
 
-    self.appFullScreenController = appFullScreenController
+    self.appFullscreenController = appFullscreenController
 
-    /// why i don't use a transition delegate?
+    /// autolayout constaint animation
+    redView.translatesAutoresizingMaskIntoConstraints = false
+    topConstraint = redView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+    leadingConstraint = redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+    widthConstraint = redView.widthAnchor.constraint(equalToConstant: startingFrame.size.width)
+    heightConstraint = redView.heightAnchor.constraint(equalToConstant: startingFrame.size.height)
 
-    /// we're using frames for animation
-    /// frame aren't reliable enough for animations
+    [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach {
+      $0?.isActive = true
+    }
+    self.view.layoutIfNeeded()
 
     UIView.animate(
       withDuration: 0.7,
@@ -72,14 +84,22 @@ class TodayController: BaseListController {
       initialSpringVelocity: 0.7,
       options: .curveEaseOut,
       animations: {
-        redView.frame = self.view.frame
+        self.topConstraint?.constant = 0
+        self.leadingConstraint?.constant = 0
+        self.widthConstraint?.constant = self.view.frame.width
+        self.heightConstraint?.constant = self.view.frame.height
 
+        self.view.layoutIfNeeded()
         self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
       }
     )
   }
 
   @objc func handleRemoveRedView(getsture: UITapGestureRecognizer) {
+
+    guard let statringFrame = self.startingFrame else {
+      return
+    }
 
     /// access startingFrame
     UIView.animate(
@@ -89,12 +109,18 @@ class TodayController: BaseListController {
       initialSpringVelocity: 0.7,
       options: .curveEaseOut,
       animations: {
-        getsture.view?.frame = self.startingFrame ?? .zero
+        self.appFullscreenController.tableView.contentOffset = .zero
+        self.topConstraint?.constant = statringFrame.origin.y
+        self.leadingConstraint?.constant = statringFrame.origin.x
+        self.widthConstraint?.constant = statringFrame.width
+        self.heightConstraint?.constant = statringFrame.height
+
+        self.view.layoutIfNeeded()
         self.tabBarController?.tabBar.transform = .identity
       },
       completion: { _ in
         getsture.view?.removeFromSuperview()
-        self.appFullScreenController.removeFromParent()
+        self.appFullscreenController.removeFromParent()
       }
     )
 

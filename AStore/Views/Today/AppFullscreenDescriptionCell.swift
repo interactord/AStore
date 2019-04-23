@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppFullScreenDescriptionCell: UITableViewCell {
+class AppFullscreenDescriptionCell: UITableViewCell {
 
   let descriptionLabel: UILabel = {
     let label = UILabel()
@@ -20,9 +20,12 @@ class AppFullScreenDescriptionCell: UITableViewCell {
       ]
     )
 
+    var middle = " are all about the details, from subtle visual effects to imaginative art styles."
+    middle += "In these titles, you're sure to find something to marvel at, whether you're into fantasy worlds or neon-soaked dartboards."
+
     attributedText.append(
       NSAttributedString(
-        string: " are all about the details, from subtle visual effects to imaginative art styles. In these titles, you're sure to find something to marvel at, whether you're into fantasy worlds or neon-soaked dartboards.",
+        string: middle,
         attributes: [
             .foregroundColor: UIColor.gray
         ]

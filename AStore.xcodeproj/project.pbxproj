@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CB226F1C0200D295A5 /* TodayController.swift */; };
 		292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CE226F1C7900D295A5 /* TodayCell.swift */; };
-		292A22D1226F27A400D295A5 /* AppFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D0226F27A400D295A5 /* AppFullScreenController.swift */; };
-		292A22D3226F2A1D00D295A5 /* AppFullScreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D2226F2A1D00D295A5 /* AppFullScreenDescriptionCell.swift */; };
+		292A22D1226F27A400D295A5 /* AppFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D0226F27A400D295A5 /* AppFullscreenController.swift */; };
+		292A22D3226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D2226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift */; };
+		292A22D5226F358D00D295A5 /* AppFullscreenHEaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D4226F358D00D295A5 /* AppFullscreenHEaderCell.swift */; };
+		292A22D7226F4A0D00D295A5 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D6226F4A0D00D295A5 /* UIImage+extension.swift */; };
 		296ED627226CC06500CB8624 /* AppsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED626226CC06500CB8624 /* AppsPageController.swift */; };
 		296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED628226CC0F600CB8624 /* BaseListController.swift */; };
 		296ED62D226CC1FA00CB8624 /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */; };
@@ -52,8 +54,10 @@
 /* Begin PBXFileReference section */
 		292A22CB226F1C0200D295A5 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
 		292A22CE226F1C7900D295A5 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
-		292A22D0226F27A400D295A5 /* AppFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullScreenController.swift; sourceTree = "<group>"; };
-		292A22D2226F2A1D00D295A5 /* AppFullScreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullScreenDescriptionCell.swift; sourceTree = "<group>"; };
+		292A22D0226F27A400D295A5 /* AppFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenController.swift; sourceTree = "<group>"; };
+		292A22D2226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenDescriptionCell.swift; sourceTree = "<group>"; };
+		292A22D4226F358D00D295A5 /* AppFullscreenHEaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenHEaderCell.swift; sourceTree = "<group>"; };
+		292A22D6226F4A0D00D295A5 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		296ED626226CC06500CB8624 /* AppsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageController.swift; sourceTree = "<group>"; };
 		296ED628226CC0F600CB8624 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		296ED62C226CC1FA00CB8624 /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
@@ -129,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				292A22CB226F1C0200D295A5 /* TodayController.swift */,
-				292A22D0226F27A400D295A5 /* AppFullScreenController.swift */,
+				292A22D0226F27A400D295A5 /* AppFullscreenController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -138,7 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				292A22CE226F1C7900D295A5 /* TodayCell.swift */,
-				292A22D2226F2A1D00D295A5 /* AppFullScreenDescriptionCell.swift */,
+				292A22D4226F358D00D295A5 /* AppFullscreenHEaderCell.swift */,
+				292A22D2226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				296ED636226CCC2500CB8624 /* UIButton+Extension.swift */,
 				29AC4168226D87A8003ED2E9 /* BetterSanppingLayout.swift */,
 				29AC4171226DC1A9003ED2E9 /* UIStackView+Extenison.swift */,
+				292A22D6226F4A0D00D295A5 /* UIImage+extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */,
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
 				29DCFFF7226DD2B300ECE8D3 /* PreviewScreenshotsController.swift in Sources */,
+				292A22D7226F4A0D00D295A5 /* UIImage+extension.swift in Sources */,
 				29AC4169226D87A8003ED2E9 /* BetterSanppingLayout.swift in Sources */,
 				296ED62D226CC1FA00CB8624 /* AppsGroupCell.swift in Sources */,
 				29E799D5226C583E005DF8BE /* Service.swift in Sources */,
@@ -440,7 +447,7 @@
 				29E799D2226C506C005DF8BE /* SearchResult.swift in Sources */,
 				29AC4167226D7AC6003ED2E9 /* HorizontalSnappingController.swift in Sources */,
 				29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */,
-				292A22D3226F2A1D00D295A5 /* AppFullScreenDescriptionCell.swift in Sources */,
+				292A22D3226F2A1D00D295A5 /* AppFullscreenDescriptionCell.swift in Sources */,
 				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
 				29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */,
 				29DC0001226DE12500ECE8D3 /* Reviews.swift in Sources */,
@@ -453,9 +460,10 @@
 				29AC415F226CD6AE003ED2E9 /* AppsHeaderHorizontalController.swift in Sources */,
 				29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
+				292A22D5226F358D00D295A5 /* AppFullscreenHEaderCell.swift in Sources */,
 				296ED62F226CC35400CB8624 /* UILabel+Extension.swift in Sources */,
 				29AC4163226D486E003ED2E9 /* AppGroup.swift in Sources */,
-				292A22D1226F27A400D295A5 /* AppFullScreenController.swift in Sources */,
+				292A22D1226F27A400D295A5 /* AppFullscreenController.swift in Sources */,
 				29AC4170226DBD23003ED2E9 /* AppDetailCell.swift in Sources */,
 				29DCFFF9226DD36B00ECE8D3 /* ScreenshotCell.swift in Sources */,
 				29AC4161226CD815003ED2E9 /* AppsHeaderCell.swift in Sources */,
@@ -530,6 +538,7 @@
 			baseConfigurationReference = 4EE4AFDD5AD2183B7ADE68F2 /* Pods-AStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AStore/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = git.interactord.AStore;
@@ -607,6 +616,7 @@
 			baseConfigurationReference = 6EF2C5F22C58BE5FBEB19E56 /* Pods-AStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/AStore/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = git.interactord.AStore;
