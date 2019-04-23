@@ -13,8 +13,8 @@ class AppFullscreenHeaderCell: UITableViewCell {
   let todayCell = TodayCell()
   let closeButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setImage(#imageLiteral(resourceName: "close-button"), for: .normal)
-    button.setImage(#imageLiteral(resourceName: "close-button").alpha(0.5), for: .highlighted)
+    button.setImage(#imageLiteral(resourceName: "Close-button"), for: .normal)
+    button.setImage(#imageLiteral(resourceName: "Close-button").alpha(0.5), for: .highlighted)
     return button
   }()
 
@@ -23,13 +23,14 @@ class AppFullscreenHeaderCell: UITableViewCell {
 
     addSubview(todayCell)
     todayCell.fillSuperview()
+
     addSubview(closeButton)
     closeButton.anchor(
       top: topAnchor,
       leading: nil,
       bottom: nil,
       trailing: trailingAnchor,
-      padding: .init(top: 16, left: 0, bottom: 0, right: 16),
+      padding: .init(top: 44, left: 0, bottom: 0, right: 12),
       size: .init(width: 80, height: 30)
     )
   }

@@ -14,6 +14,23 @@ class TodayController: BaseListController {
   var startingFrame: CGRect?
   var appFullscreenController: AppFullscreenController!
 
+  let items = [
+    TodayItem(
+      category: "LIFE HACK",
+      title: "Utilizing your Time",
+      image: #imageLiteral(resourceName: "Garden"),
+      description: "All the tools and apps your need to intelligently organize your life the right way.",
+      backgroundColor: .white
+    ),
+    TodayItem(
+      category: "HOLIDAYS",
+      title: "Travel on a Budget",
+      image: #imageLiteral(resourceName: "Holiday"),
+      description: "Find out all your need to know on how to trabel without packing everything!",
+      backgroundColor: #colorLiteral(red: 0.9874814153, green: 0.9665464759, blue: 0.7266566157, alpha: 1)
+    )
+  ]
+
   var topConstraint: NSLayoutConstraint?
   var leadingConstraint: NSLayoutConstraint?
   var widthConstraint: NSLayoutConstraint?
@@ -29,7 +46,7 @@ class TodayController: BaseListController {
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 4
+    return items.count
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,6 +54,7 @@ class TodayController: BaseListController {
     guard let todayCell = cell as? TodayCell else {
       return cell
     }
+    todayCell.todayItem = items[indexPath.item]
     return todayCell
   }
 
@@ -52,25 +70,27 @@ class TodayController: BaseListController {
     self.startingFrame = startingFrame
 
     let appFullscreenController = AppFullscreenController()
-    guard let redView = appFullscreenController.view else {
+    appFullscreenController.todayItem = items[indexPath.item]
+    appFullscreenController.dismissHandler = {
+      self.removeFullscreenView()
+    }
+    guard let fullscreenView = appFullscreenController.view else {
       return
     }
-    redView.addGestureRecognizer(
-      UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView))
-    )
-    redView.frame = startingFrame
-    redView.layer.cornerRadius = 16
-    view.addSubview(redView)
+    fullscreenView.frame = startingFrame
+    fullscreenView.layer.cornerRadius = 16
+    view.addSubview(fullscreenView)
     addChild(appFullscreenController)
 
     self.appFullscreenController = appFullscreenController
+    self.collectionView.isUserInteractionEnabled = false
 
     /// autolayout constaint animation
-    redView.translatesAutoresizingMaskIntoConstraints = false
-    topConstraint = redView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
-    leadingConstraint = redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
-    widthConstraint = redView.widthAnchor.constraint(equalToConstant: startingFrame.size.width)
-    heightConstraint = redView.heightAnchor.constraint(equalToConstant: startingFrame.size.height)
+    fullscreenView.translatesAutoresizingMaskIntoConstraints = false
+    topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+    leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+    widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startingFrame.size.width)
+    heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startingFrame.size.height)
 
     [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach {
       $0?.isActive = true
@@ -91,11 +111,17 @@ class TodayController: BaseListController {
 
         self.view.layoutIfNeeded()
         self.tabBarController?.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+
+        guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else {
+          return
+        }
+        cell.todayCell.topConstaint.constant = 48
+        cell.layoutIfNeeded()
       }
     )
   }
 
-  @objc func handleRemoveRedView(getsture: UITapGestureRecognizer) {
+  func removeFullscreenView() {
 
     guard let statringFrame = self.startingFrame else {
       return
@@ -117,10 +143,17 @@ class TodayController: BaseListController {
 
         self.view.layoutIfNeeded()
         self.tabBarController?.tabBar.transform = .identity
+
+        guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else {
+          return
+        }
+        cell.todayCell.topConstaint.constant = 24
+        cell.layoutIfNeeded()
       },
       completion: { _ in
-        getsture.view?.removeFromSuperview()
+        self.appFullscreenController.view.removeFromSuperview()
         self.appFullscreenController.removeFromParent()
+        self.collectionView.isUserInteractionEnabled = true
       }
     )
 

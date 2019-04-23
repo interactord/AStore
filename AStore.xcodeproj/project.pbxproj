@@ -31,6 +31,7 @@
 		29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC416C226DB829003ED2E9 /* AppDetailController.swift */; };
 		29AC4170226DBD23003ED2E9 /* AppDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC416F226DBD23003ED2E9 /* AppDetailCell.swift */; };
 		29AC4172226DC1A9003ED2E9 /* UIStackView+Extenison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC4171226DC1A9003ED2E9 /* UIStackView+Extenison.swift */; };
+		29BACB22226F58CC00012DBB /* TodayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BACB21226F58CC00012DBB /* TodayItem.swift */; };
 		29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */; };
 		29DC0001226DE12500ECE8D3 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DC0000226DE12500ECE8D3 /* Reviews.swift */; };
 		29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */; };
@@ -76,6 +77,7 @@
 		29AC416C226DB829003ED2E9 /* AppDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailController.swift; sourceTree = "<group>"; };
 		29AC416F226DBD23003ED2E9 /* AppDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailCell.swift; sourceTree = "<group>"; };
 		29AC4171226DC1A9003ED2E9 /* UIStackView+Extenison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extenison.swift"; sourceTree = "<group>"; };
+		29BACB21226F58CC00012DBB /* TodayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayItem.swift; sourceTree = "<group>"; };
 		29CE7710226AF5E700E19B9D /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		29DC0000226DE12500ECE8D3 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		29DCFFF4226DD14000ECE8D3 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				29AC4164226D6591003ED2E9 /* SocialApp.swift */,
 				29AC4162226D486E003ED2E9 /* AppGroup.swift */,
 				29DC0000226DE12500ECE8D3 /* Reviews.swift */,
+				29BACB21226F58CC00012DBB /* TodayItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,10 +239,10 @@
 		F426E44D0D065FC69BBB665F = {
 			isa = PBXGroup;
 			children = (
-				F426E4933FCC6CC5103DF10D /* Products */,
 				F426E6B51BE95801A562E2F2 /* AStore */,
-				06E4B9FF780C06C92371CEA2 /* Pods */,
 				084D408E15F578BE538711D1 /* Frameworks */,
+				06E4B9FF780C06C92371CEA2 /* Pods */,
+				F426E4933FCC6CC5103DF10D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -255,9 +258,9 @@
 			isa = PBXGroup;
 			children = (
 				F426E13B75F3BCDF87AA0DE8 /* AppDelegate.swift */,
+				29E799D0226C5061005DF8BE /* Models */,
 				F426E37EE02680597118FCA3 /* Controller */,
 				F426E796F62C21390078C9AD /* Helpers */,
-				29E799D0226C5061005DF8BE /* Models */,
 				F426E93D0C31D23080727742 /* Resources */,
 				29E799D3226C5822005DF8BE /* Services */,
 				F426E99E620B26EAAD191E51 /* Views */,
@@ -458,6 +461,7 @@
 				29CE7711226AF5E700E19B9D /* BaseTabBarController.swift in Sources */,
 				29DCFFFB226DD85600ECE8D3 /* ReviewRowCell.swift in Sources */,
 				29AC415F226CD6AE003ED2E9 /* AppsHeaderHorizontalController.swift in Sources */,
+				29BACB22226F58CC00012DBB /* TodayItem.swift in Sources */,
 				29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
 				292A22D5226F358D00D295A5 /* AppFullscreenHEaderCell.swift in Sources */,
