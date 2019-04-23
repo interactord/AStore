@@ -34,7 +34,7 @@ class Service {
   }
 
   func fetchSocialApps(completion: @escaping ([SocialApp]?, Error?) -> Void) {
-    let urlString = "https://gist.githubusercontent.com/interactord/406f7daa408f292e6d1fced9783e1033/raw/93b2a7e9dd8452a3e0ed4ec01d41c3d1584a8cdd/appsHeader.json"
+    let urlString = "https://s3.ap-northeast-2.amazonaws.com/astore.interactord.io/apps-banner/appsHeadBanner.json"
 
     fetchGenericJSONData(urlString: urlString, completaion: completion)
 
