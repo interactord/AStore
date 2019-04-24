@@ -144,10 +144,10 @@
 		292A22CA226F1BF500D295A5 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				292A22CB226F1C0200D295A5 /* TodayController.swift */,
-				291085A0227006E70059F863 /* BackEnabledNavigationController.swift */,
-				2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */,
 				292A22D0226F27A400D295A5 /* AppFullscreenController.swift */,
+				291085A0227006E70059F863 /* BackEnabledNavigationController.swift */,
+				292A22CB226F1C0200D295A5 /* TodayController.swift */,
+				2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";

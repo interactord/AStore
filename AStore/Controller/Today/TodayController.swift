@@ -10,7 +10,7 @@ import UIKit
 
 class TodayController: BaseListController {
 
-  static let cellSize: CGFloat = 500
+  static let cellSize: CGFloat = 466
 
   var startingFrame: CGRect?
   var appFullscreenController: AppFullscreenController!
@@ -109,6 +109,15 @@ class TodayController: BaseListController {
           image: #imageLiteral(resourceName: "Garden"),
           description: "All the tools and apps your need to intelligently organize your life the right way.",
           backgroundColor: .white,
+          cellType: .single,
+          apps: []
+        ),
+        TodayItem(
+          category: "HOLIDAYS",
+          title: "Travel on a Budget",
+          image: #imageLiteral(resourceName: "Holiday"),
+          description: "Find out all you need to know on how to travel without packing everything!",
+          backgroundColor: #colorLiteral(red: 0.9883298278, green: 0.962456286, blue: 0.7225952148, alpha: 1),
           cellType: .single,
           apps: []
         )
@@ -259,7 +268,7 @@ class TodayController: BaseListController {
         let apps = self.items[indexPath.item].apps
         let fullScreenController = TodayMultipleAppsController(mode: .fullScreen)
         fullScreenController.apps = apps
-        present(fullScreenController, animated: true)
+        present(BackEnabledNavigationController(rootViewController: fullScreenController), animated: true)
         return
       }
       superview = superview?.superview
