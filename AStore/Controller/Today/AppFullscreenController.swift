@@ -20,7 +20,6 @@ class AppFullscreenController: UITableViewController {
     tableView.separatorStyle = .none
     tableView.allowsSelection = false
     tableView.contentInsetAdjustmentBehavior = .never
-
     let height = UIApplication.shared.statusBarFrame.height
     tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
   }
@@ -33,7 +32,7 @@ class AppFullscreenController: UITableViewController {
 
     if indexPath.item == 0 {
       let headerCell = AppFullscreenHeaderCell()
-      headerCell.closeButton.addTarget(self, action: #selector(handleRemoveAppFullscreenView), for: .touchUpInside)
+      headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
       headerCell.todayCell.todayItem = todayItem
       headerCell.todayCell.layer.cornerRadius = 0
       headerCell.clipsToBounds = true
@@ -45,13 +44,14 @@ class AppFullscreenController: UITableViewController {
     return cell
   }
 
-  @objc func handleRemoveAppFullscreenView() {
+  @objc func handleDismiss(button: UIButton) {
+    button.isHidden = true
     dismissHandler?()
   }
 
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.item == 0 {
-      return 500
+      return TodayController.cellSize
     }
     return super.tableView(tableView, heightForRowAt: indexPath)
   }

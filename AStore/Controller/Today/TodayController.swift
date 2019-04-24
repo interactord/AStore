@@ -45,6 +45,95 @@ class TodayController: BaseListController {
     tabBarController?.tabBar.superview?.setNeedsLayout()
   }
 
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return items.count
+  }
+
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    let cellId = items[indexPath.item].cellType.rawValue
+
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+
+    if let cell = cell as? BaseTodayCell {
+      cell.todayItem = items[indexPath.item]
+    }
+
+    (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
+    return cell
+  }
+
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    switch items[indexPath.item].cellType {
+    case .multiple:
+      showDailyListFullscreen(indexPath)
+    default:
+      showSingleAppFullscreen(indexPath)
+    }
+  }
+
+  func removeFullscreenView() {
+
+    self.appFullscreenController.tableView.contentOffset = .zero
+
+    /// access startingFrame
+    UIView.animate(
+      withDuration: 0.7,
+      delay: 0,
+      usingSpringWithDamping: 0.7,
+      initialSpringVelocity: 0.7,
+      options: .curveEaseOut,
+      animations: {
+        guard let statringFrame = self.startingFrame else {
+          return
+        }
+        self.anchoredConstaints?.top?.constant = statringFrame.origin.y
+        self.anchoredConstaints?.leading?.constant = statringFrame.origin.x
+        self.anchoredConstaints?.width?.constant = statringFrame.width
+        self.anchoredConstaints?.height?.constant = statringFrame.height
+
+        self.view.layoutIfNeeded()
+        self.tabBarController?.tabBar.transform = .identity
+
+        guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else {
+          return
+        }
+        cell.todayCell.topConstaint.constant = 24
+        cell.layoutIfNeeded()
+      },
+      completion: { _ in
+        self.appFullscreenController.view.removeFromSuperview()
+        self.appFullscreenController.removeFromParent()
+        self.collectionView.isUserInteractionEnabled = true
+      }
+    )
+  }
+
+  @objc func handleMultipleAppsTap(gesture: UIGestureRecognizer) {
+
+    let collectionView = gesture.view
+    var superview = collectionView?.superview
+
+    /// find indexPath in superview(self.collectionView)
+    while superview != nil {
+      if let cell = superview as? TodayMultipleAppCell {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else {
+          return
+        }
+        let apps = self.items[indexPath.item].apps
+        let fullScreenController = TodayMultipleAppsController(mode: .fullScreen)
+        fullScreenController.apps = apps
+        present(BackEnabledNavigationController(rootViewController: fullScreenController), animated: true)
+        return
+      }
+      superview = superview?.superview
+    }
+  }
+}
+
+private extension TodayController {
+
   private func fetchData() {
     // dispatchGroup
 
@@ -92,15 +181,6 @@ class TodayController: BaseListController {
           apps: topGrossingGroup?.feed.results ?? []
         ),
         TodayItem(
-          category: "Daily List",
-          title: gamesGroup?.feed.title ?? "",
-          image: #imageLiteral(resourceName: "Garden"),
-          description: "",
-          backgroundColor: .white,
-          cellType: .multiple,
-          apps: gamesGroup?.feed.results ?? []
-        ),
-        TodayItem(
           category: "LIFE HACK",
           title: "Utilizing your Time",
           image: #imageLiteral(resourceName: "Garden"),
@@ -108,6 +188,15 @@ class TodayController: BaseListController {
           backgroundColor: .white,
           cellType: .single,
           apps: []
+        ),
+        TodayItem(
+          category: "Daily List",
+          title: gamesGroup?.feed.title ?? "",
+          image: #imageLiteral(resourceName: "Garden"),
+          description: "",
+          backgroundColor: .white,
+          cellType: .multiple,
+          apps: gamesGroup?.feed.results ?? []
         ),
         TodayItem(
           category: "HOLIDAYS",
@@ -125,115 +214,11 @@ class TodayController: BaseListController {
 
   }
 
-  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return items.count
-  }
-
-  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-    let cellId = items[indexPath.item].cellType.rawValue
-
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-
-    if let cell = cell as? BaseTodayCell {
-      cell.todayItem = items[indexPath.item]
-    }
-
-    (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
-    return cell
-  }
-
   private func showDailyListFullscreen(_ indexPath: IndexPath) {
     let fullController = TodayMultipleAppsController(mode: .fullScreen)
     fullController.apps = self.items[indexPath.item].apps
     present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
   }
-
-  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    switch items[indexPath.item].cellType {
-    case .multiple:
-      showDailyListFullscreen(indexPath)
-    default:
-      showSingleAppFullscreen(indexPath)
-    }
-  }
-
-  func removeFullscreenView() {
-
-    guard let statringFrame = self.startingFrame else {
-      return
-    }
-
-    /// access startingFrame
-    UIView.animate(
-      withDuration: 0.7,
-      delay: 0,
-      usingSpringWithDamping: 0.7,
-      initialSpringVelocity: 0.7,
-      options: .curveEaseOut,
-      animations: {
-        self.appFullscreenController.tableView.contentOffset = .zero
-        self.anchoredConstaints?.top?.constant = statringFrame.origin.y
-        self.anchoredConstaints?.leading?.constant = statringFrame.origin.x
-        self.anchoredConstaints?.width?.constant = statringFrame.width
-        self.anchoredConstaints?.height?.constant = statringFrame.height
-
-        self.view.layoutIfNeeded()
-        self.tabBarController?.tabBar.transform = .identity
-
-        guard let cell = self.appFullscreenController.tableView.cellForRow(at: [0, 0]) as? AppFullscreenHeaderCell else {
-          return
-        }
-        cell.todayCell.topConstaint.constant = 24
-        cell.layoutIfNeeded()
-      },
-      completion: { _ in
-        self.appFullscreenController.view.removeFromSuperview()
-        self.appFullscreenController.removeFromParent()
-        self.collectionView.isUserInteractionEnabled = true
-      }
-    )
-  }
-
-  @objc func handleMultipleAppsTap(gesture: UIGestureRecognizer) {
-
-    let collectionView = gesture.view
-    var superview = collectionView?.superview
-
-    /// find indexPath in superview(self.collectionView)
-    while superview != nil {
-      if let cell = superview as? TodayMultipleAppCell {
-        guard let indexPath = self.collectionView.indexPath(for: cell) else {
-          return
-        }
-        let apps = self.items[indexPath.item].apps
-        let fullScreenController = TodayMultipleAppsController(mode: .fullScreen)
-        fullScreenController.apps = apps
-        present(BackEnabledNavigationController(rootViewController: fullScreenController), animated: true)
-        return
-      }
-      superview = superview?.superview
-    }
-  }
-}
-
-extension TodayController: UICollectionViewDelegateFlowLayout {
-
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return .init(width: view.frame.width - 48, height: TodayController.cellSize)
-  }
-
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 32
-  }
-
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    return .init(top: 32, left: 0, bottom: 32, right: 0)
-  }
-}
-
-private extension TodayController {
 
   private func setupSingleAppFullscreenController(_ indexPath: IndexPath) {
     let appFullscreenController = AppFullscreenController()
@@ -319,5 +304,20 @@ private extension TodayController {
     /// #3 begin the fullscreen animation
     beginAnimationAppFullscreen()
 
+  }
+}
+
+extension TodayController: UICollectionViewDelegateFlowLayout {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return .init(width: view.frame.width - 48, height: TodayController.cellSize)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 32
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return .init(top: 32, left: 0, bottom: 32, right: 0)
   }
 }
