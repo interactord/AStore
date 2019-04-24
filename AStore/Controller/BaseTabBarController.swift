@@ -18,6 +18,7 @@ class BaseTabBarController: UITabBarController {
     viewControllers = [
       createNavController(viewController: TodayController(), title: "Today", imageName: "Today"),
       createNavController(viewController: AppsPageController(), title: "Apps", imageName: "Apps"),
+      createNavController(viewController: MusicController(), title: "Music", imageName: "Music"),
       createNavController(viewController: AppSearchController(), title: "Search", imageName: "Search")
     ]
 
