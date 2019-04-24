@@ -12,6 +12,9 @@
 		2910859D226F7BA90059F863 /* TodayMultipleAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */; };
 		2910859F226F7C160059F863 /* MultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859E226F7C160059F863 /* MultipleAppCell.swift */; };
 		291085A1227006E70059F863 /* BackEnabledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291085A0227006E70059F863 /* BackEnabledNavigationController.swift */; };
+		291625FF2270D2A200B5DF93 /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291625FE2270D2A200B5DF93 /* MusicController.swift */; };
+		291626022270D36A00B5DF93 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291626012270D36A00B5DF93 /* TrackCell.swift */; };
+		291626042270D5E300B5DF93 /* MusicLoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291626032270D5E300B5DF93 /* MusicLoadingFooter.swift */; };
 		292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CB226F1C0200D295A5 /* TodayController.swift */; };
 		292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CE226F1C7900D295A5 /* TodayCell.swift */; };
 		292A22D1226F27A400D295A5 /* AppFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22D0226F27A400D295A5 /* AppFullscreenController.swift */; };
@@ -63,6 +66,9 @@
 		2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppsController.swift; sourceTree = "<group>"; };
 		2910859E226F7C160059F863 /* MultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAppCell.swift; sourceTree = "<group>"; };
 		291085A0227006E70059F863 /* BackEnabledNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackEnabledNavigationController.swift; sourceTree = "<group>"; };
+		291625FE2270D2A200B5DF93 /* MusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicController.swift; sourceTree = "<group>"; };
+		291626012270D36A00B5DF93 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		291626032270D5E300B5DF93 /* MusicLoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLoadingFooter.swift; sourceTree = "<group>"; };
 		292A22CB226F1C0200D295A5 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
 		292A22CE226F1C7900D295A5 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		292A22D0226F27A400D295A5 /* AppFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullscreenController.swift; sourceTree = "<group>"; };
@@ -139,6 +145,31 @@
 				9989309381E8DD5FD4CC6495 /* Pods_AStore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		291625FC2270C4F100B5DF93 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F426EECD026296C13A5FF045 /* SearchResultCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		291625FD2270D28400B5DF93 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				291625FE2270D2A200B5DF93 /* MusicController.swift */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
+		291626002270D36400B5DF93 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				291626012270D36A00B5DF93 /* TrackCell.swift */,
+				291626032270D5E300B5DF93 /* MusicLoadingFooter.swift */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		292A22CA226F1BF500D295A5 /* Today */ = {
@@ -241,6 +272,7 @@
 		F426E37EE02680597118FCA3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				291625FD2270D28400B5DF93 /* Music */,
 				292A22CA226F1BF500D295A5 /* Today */,
 				296ED62A226CC13F00CB8624 /* Search */,
 				296ED625226CC05E00CB8624 /* Apps */,
@@ -310,9 +342,10 @@
 		F426E99E620B26EAAD191E51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				291626002270D36400B5DF93 /* Music */,
+				291625FC2270C4F100B5DF93 /* Search */,
 				292A22CD226F1C6C00D295A5 /* Today */,
 				296ED62B226CC1ED00CB8624 /* Apps */,
-				F426EECD026296C13A5FF045 /* SearchResultCell.swift */,
 				F426E453368FA766E9D914E6 /* VerticalStackView.swift */,
 			);
 			path = Views;
@@ -453,6 +486,7 @@
 				296ED635226CCB1300CB8624 /* UIImageView+Extension.swift in Sources */,
 				292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */,
 				29AC4165226D6591003ED2E9 /* SocialApp.swift in Sources */,
+				291625FF2270D2A200B5DF93 /* MusicController.swift in Sources */,
 				296ED629226CC0F600CB8624 /* BaseListController.swift in Sources */,
 				F426EFF52902FFE83257F9E0 /* AppDelegate.swift in Sources */,
 				29DCFFF7226DD2B300ECE8D3 /* PreviewScreenshotsController.swift in Sources */,
@@ -471,6 +505,7 @@
 				296ED633226CCA7000CB8624 /* AppRowCell.swift in Sources */,
 				29AC416D226DB829003ED2E9 /* AppDetailController.swift in Sources */,
 				29DC0001226DE12500ECE8D3 /* Reviews.swift in Sources */,
+				291626022270D36A00B5DF93 /* TrackCell.swift in Sources */,
 				29DCFFFD226DDA0700ECE8D3 /* ReviewsController.swift in Sources */,
 				296ED631226CC4E000CB8624 /* AppsHorizontalController.swift in Sources */,
 				29AC415B226CD528003ED2E9 /* AppsPageHeader.swift in Sources */,
@@ -481,6 +516,7 @@
 				29BACB22226F58CC00012DBB /* TodayItem.swift in Sources */,
 				29DCFFF5226DD14000ECE8D3 /* PreviewCell.swift in Sources */,
 				F426EB5BF7B394CA46366462 /* AppSearchController.swift in Sources */,
+				291626042270D5E300B5DF93 /* MusicLoadingFooter.swift in Sources */,
 				292A22D5226F358D00D295A5 /* AppFullscreenHeaderCell.swift in Sources */,
 				296ED62F226CC35400CB8624 /* UILabel+Extension.swift in Sources */,
 				29AC4163226D486E003ED2E9 /* AppGroup.swift in Sources */,
@@ -568,7 +604,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = git.interactord.AStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -646,7 +682,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = git.interactord.AStore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
