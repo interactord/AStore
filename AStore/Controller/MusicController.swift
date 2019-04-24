@@ -8,13 +8,16 @@
 
 import UIKit
 
-/// 1. Implement Cell
-/// 2. Implement a footer for the loader view
-
 class MusicController: BaseListController {
 
   private let cellId = "cellId"
   private let footerId = "footerId"
+
+  private let searchTerm = "bts"
+  var isPaginating = false
+  var isDonePagination = false
+
+  var results = [SearchResultResponse]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,16 +29,28 @@ class MusicController: BaseListController {
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
       withReuseIdentifier: footerId
     )
+
+    fetchData()
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 20
+    return results.count
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
     guard let trackCell = cell as? TrackCell else {
       return cell
+    }
+
+    let track = results[indexPath.item]
+    trackCell.nameLabel.text = track.trackName
+    trackCell.imageView.sd_setImage(with: URL(string: track.artworkUrl100))
+    trackCell.subTitleLabel.text = "\(track.artistName ?? "") ∙ \(track.collectionName ?? "")"
+
+    /// initiate pagiantion
+    if indexPath.item == results.count - 1 {
+      fetchData()
     }
 
     return trackCell
@@ -52,6 +67,43 @@ class MusicController: BaseListController {
 
 }
 
+private extension MusicController {
+
+  private func fetchData() {
+
+    if isPaginating {
+      return
+    }
+
+    isPaginating = true
+
+    let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&offset=\(results.count)&limit=25"
+    Service.shared.fetchGenericJSONData(urlString: urlString) { (searchResult: SearchResult?, err) in
+      if let err = err {
+        print("Failed to paginate data: ", err)
+        return
+      }
+
+      guard let result = searchResult?.results else {
+        return
+      }
+
+      if searchResult?.results.isEmpty ?? true {
+        self.isDonePagination = true
+      }
+
+      sleep(2)
+
+      self.results += result
+
+      DispatchQueue.main.async {
+        self.collectionView.reloadData()
+      }
+      self.isPaginating = false
+    }
+  }
+}
+
 extension MusicController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -59,6 +111,7 @@ extension MusicController: UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    return .init(width: view.frame.width, height: 100)
+    let height: CGFloat = isDonePagination ? 0 : 100
+    return .init(width: view.frame.width, height: height)
   }
 }
