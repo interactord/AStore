@@ -43,6 +43,11 @@ class TodayController: BaseListController {
     collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
   }
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    tabBarController?.tabBar.superview?.setNeedsLayout()
+  }
+
   private func fetchData() {
     // dispatchGroup
 
@@ -128,6 +133,7 @@ class TodayController: BaseListController {
       cell.todayItem = items[indexPath.item]
     }
 
+    (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
     return cell
   }
 
@@ -142,8 +148,8 @@ class TodayController: BaseListController {
 
     if items[indexPath.item].cellType == .multiple {
       let fullController = TodayMultipleAppsController(mode: .fullScreen)
-      fullController.results = self.items[indexPath.item].apps
-      present(fullController, animated: true)
+      fullController.apps = self.items[indexPath.item].apps
+      present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
 
       return
     }
@@ -237,7 +243,27 @@ class TodayController: BaseListController {
         self.collectionView.isUserInteractionEnabled = true
       }
     )
+  }
 
+  @objc func handleMultipleAppsTap(gesture: UIGestureRecognizer) {
+
+    let collectionView = gesture.view
+    var superview = collectionView?.superview
+
+    /// find indexPath in superview(self.collectionView)
+    while superview != nil {
+      if let cell = superview as? TodayMultipleAppCell {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else {
+          return
+        }
+        let apps = self.items[indexPath.item].apps
+        let fullScreenController = TodayMultipleAppsController(mode: .fullScreen)
+        fullScreenController.apps = apps
+        present(fullScreenController, animated: true)
+        return
+      }
+      superview = superview?.superview
+    }
   }
 }
 

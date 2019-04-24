@@ -23,7 +23,7 @@ class TodayMultipleAppsController: BaseListController {
     button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
     return button
   }()
-  var results = [FeedResult]()
+  var apps = [FeedResult]()
 
   override var prefersStatusBarHidden: Bool {
     return true
@@ -34,11 +34,16 @@ class TodayMultipleAppsController: BaseListController {
     super.init()
   }
 
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     if mode == .fullScreen {
       setupCloseButton()
+      navigationController?.isNavigationBarHidden = true
     } else {
       collectionView.isScrollEnabled = false
     }
@@ -66,9 +71,9 @@ class TodayMultipleAppsController: BaseListController {
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
     if mode == .fullScreen {
-      return results.count
+      return apps.count
     }
-    return min(4, results.count)
+    return min(4, apps.count)
   }
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,12 +81,14 @@ class TodayMultipleAppsController: BaseListController {
     guard let mutipleAppCell = cell as? MultipleAppCell else {
       return cell
     }
-    mutipleAppCell.app = results[indexPath.item]
+    mutipleAppCell.app = apps[indexPath.item]
     return mutipleAppCell
   }
 
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let appId = self.apps[indexPath.item].id
+    let appDetailController = AppDetailController(appId: appId)
+    navigationController?.pushViewController(appDetailController, animated: true)
   }
 }
 
