@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		29108599226F740D0059F863 /* TodayMultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29108598226F740D0059F863 /* TodayMultipleAppCell.swift */; };
 		2910859B226F7A2F0059F863 /* BaseTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859A226F7A2F0059F863 /* BaseTodayCell.swift */; };
-		2910859D226F7BA90059F863 /* TodayMultipleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859C226F7BA90059F863 /* TodayMultipleController.swift */; };
+		2910859D226F7BA90059F863 /* TodayMultipleAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */; };
 		2910859F226F7C160059F863 /* MultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2910859E226F7C160059F863 /* MultipleAppCell.swift */; };
 		292A22CC226F1C0200D295A5 /* TodayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CB226F1C0200D295A5 /* TodayController.swift */; };
 		292A22CF226F1C7900D295A5 /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A22CE226F1C7900D295A5 /* TodayCell.swift */; };
@@ -59,7 +59,7 @@
 /* Begin PBXFileReference section */
 		29108598226F740D0059F863 /* TodayMultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppCell.swift; sourceTree = "<group>"; };
 		2910859A226F7A2F0059F863 /* BaseTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTodayCell.swift; sourceTree = "<group>"; };
-		2910859C226F7BA90059F863 /* TodayMultipleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleController.swift; sourceTree = "<group>"; };
+		2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppsController.swift; sourceTree = "<group>"; };
 		2910859E226F7C160059F863 /* MultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAppCell.swift; sourceTree = "<group>"; };
 		292A22CB226F1C0200D295A5 /* TodayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayController.swift; sourceTree = "<group>"; };
 		292A22CE226F1C7900D295A5 /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				292A22CB226F1C0200D295A5 /* TodayController.swift */,
-				2910859C226F7BA90059F863 /* TodayMultipleController.swift */,
+				2910859C226F7BA90059F863 /* TodayMultipleAppsController.swift */,
 				292A22D0226F27A400D295A5 /* AppFullscreenController.swift */,
 			);
 			path = Today;
@@ -490,7 +490,7 @@
 				29DCFFFF226DDBBC00ECE8D3 /* ReviewCell.swift in Sources */,
 				F426E5171AD6C0952808A59D /* UIView+Layout.swift in Sources */,
 				F426EAD3E48AD91F9007299F /* VerticalStackView.swift in Sources */,
-				2910859D226F7BA90059F863 /* TodayMultipleController.swift in Sources */,
+				2910859D226F7BA90059F863 /* TodayMultipleAppsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

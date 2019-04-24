@@ -8,29 +8,20 @@
 
 import UIKit
 
-class TodayMultipleController: BaseListController {
+class TodayMultipleAppsController: BaseListController {
 
   private let cellId = "cellId"
 
   private let spacing: CGFloat = 12
 
-  private var results = [FeedResult]()
+  var results = [FeedResult]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     collectionView.backgroundColor = .white
     collectionView.isScrollEnabled = false
-
     collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: cellId)
-
-    Service.shared.fetchGames { appGroup, _ in
-      self.results = appGroup?.feed.results ?? []
-
-      DispatchQueue.main.async {
-        self.collectionView.reloadData()
-      }
-    }
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,7 +38,7 @@ class TodayMultipleController: BaseListController {
   }
 }
 
-extension TodayMultipleController: UICollectionViewDelegateFlowLayout {
+extension TodayMultipleAppsController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 

@@ -10,48 +10,18 @@ import UIKit
 
 class TodayController: BaseListController {
 
-//  private let cellId = "cellId"
-//  private let mutilpleAppCellId = "mutilpleAppCellId"
-
   static let cellSize: CGFloat = 500
 
   var startingFrame: CGRect?
   var appFullscreenController: AppFullscreenController!
-
-  let items = [
-    TodayItem(
-      category: "LIFE HACK",
-      title: "Utilizing your Time",
-      image: #imageLiteral(resourceName: "Garden"),
-      description: "All the tools and apps your need to intelligently organize your life the right way.",
-      backgroundColor: .white,
-      cellType: .single
-    ),
-    TodayItem(
-      category: "SECOND CELL",
-      title: "Test-Drive These CarPlay Apps",
-      image: #imageLiteral(resourceName: "Garden"),
-      description: "",
-      backgroundColor: .white,
-      cellType: .multiple
-    ),
-    TodayItem(
-      category: "HOLIDAYS",
-      title: "Travel on a Budget",
-      image: #imageLiteral(resourceName: "Holiday"),
-      description: "Find out all your need to know on how to trabel without packing everything!",
-      backgroundColor: #colorLiteral(red: 0.9874814153, green: 0.9665464759, blue: 0.7266566157, alpha: 1),
-      cellType: .single
-    ),
-    TodayItem(
-      category: "THE DAILY LIST",
-      title: "Test-Drive These CarPlay Apps",
-      image: #imageLiteral(resourceName: "Garden"),
-      description: "",
-      backgroundColor: .white,
-      cellType: .multiple
-    )
-  ]
+  var items = [TodayItem]()
+  var activityIndicatorView: UIActivityIndicatorView = {
+    let aiv = UIActivityIndicatorView(style: .whiteLarge)
+    aiv.color = .darkGray
+    aiv.startAnimating()
+    aiv.hidesWhenStopped = true
+    return aiv
+  }()
 
   var topConstraint: NSLayoutConstraint?
   var leadingConstraint: NSLayoutConstraint?
@@ -61,15 +31,87 @@ class TodayController: BaseListController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-//    if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-//      layout.scrollDirection = .horizontal
-//    }
+    view.addSubview(activityIndicatorView)
+    activityIndicatorView.centerInSuperview()
+
+    fetchData()
 
     navigationController?.isNavigationBarHidden = true
 
     collectionView.backgroundColor = #colorLiteral(red: 0.948936522, green: 0.9490727782, blue: 0.9489068389, alpha: 1)
     collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayItem.CellType.single.rawValue)
     collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
+  }
+
+  private func fetchData() {
+    // dispatchGroup
+
+    let dispatchGroup = DispatchGroup()
+
+    var topGrossingGroup: AppGroup?
+    var gamesGroup: AppGroup?
+
+    dispatchGroup.enter()
+    Service.shared.fetchTopGrossing { appGroup, err in
+      if let err = err {
+        print("Fail fetched topGrossing app", err)
+        dispatchGroup.leave()
+        return
+      }
+
+      topGrossingGroup = appGroup
+      dispatchGroup.leave()
+    }
+
+    dispatchGroup.enter()
+    Service.shared.fetchGames { appGroup, err in
+      if let err = err {
+        print("Fail fetched games app", err)
+        dispatchGroup.leave()
+        return
+      }
+
+      gamesGroup = appGroup
+      dispatchGroup.leave()
+    }
+
+    /// completion block
+    dispatchGroup.notify(queue: .main) {
+      self.activityIndicatorView.stopAnimating()
+
+      self.items = [
+        TodayItem(
+          category: "Daily List",
+          title: topGrossingGroup?.feed.title ?? "",
+          image: #imageLiteral(resourceName: "Garden"),
+          description: "",
+          backgroundColor: .white,
+          cellType: .multiple,
+          apps: topGrossingGroup?.feed.results ?? []
+        ),
+        TodayItem(
+          category: "Daily List",
+          title: gamesGroup?.feed.title ?? "",
+          image: #imageLiteral(resourceName: "Garden"),
+          description: "",
+          backgroundColor: .white,
+          cellType: .multiple,
+          apps: gamesGroup?.feed.results ?? []
+        ),
+        TodayItem(
+          category: "LIFE HACK",
+          title: "Utilizing your Time",
+          image: #imageLiteral(resourceName: "Garden"),
+          description: "All the tools and apps your need to intelligently organize your life the right way.",
+          backgroundColor: .white,
+          cellType: .single,
+          apps: []
+        )
+      ]
+
+      self.collectionView.reloadData()
+    }
+
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
