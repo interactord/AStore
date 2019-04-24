@@ -140,6 +140,14 @@ class TodayController: BaseListController {
         return
     }
 
+    if items[indexPath.item].cellType == .multiple {
+      let fullController = TodayMultipleAppsController(mode: .fullScreen)
+      fullController.results = self.items[indexPath.item].apps
+      present(fullController, animated: true)
+
+      return
+    }
+
     self.startingFrame = startingFrame
 
     let appFullscreenController = AppFullscreenController()
