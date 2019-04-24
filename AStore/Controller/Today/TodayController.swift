@@ -24,9 +24,14 @@ class TodayController: BaseListController {
   }()
 
   var anchoredConstaints: AnchoredConstraints?
+  let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    view.addSubview(blurVisualEffectView)
+    blurVisualEffectView.fillSuperview()
+    blurVisualEffectView.alpha = 0
 
     view.addSubview(activityIndicatorView)
     activityIndicatorView.centerInSuperview()
@@ -73,9 +78,7 @@ class TodayController: BaseListController {
     }
   }
 
-  func removeFullscreenView() {
-
-    self.appFullscreenController.tableView.contentOffset = .zero
+  func handleAppFullscreenDismissal() {
 
     /// access startingFrame
     UIView.animate(
@@ -85,6 +88,11 @@ class TodayController: BaseListController {
       initialSpringVelocity: 0.7,
       options: .curveEaseOut,
       animations: {
+
+        self.blurVisualEffectView.alpha = 0
+        self.appFullscreenController.view.transform = .identity
+        self.appFullscreenController.tableView.contentOffset = .zero
+
         guard let statringFrame = self.startingFrame else {
           return
         }
@@ -172,6 +180,15 @@ private extension TodayController {
 
       self.items = [
         TodayItem(
+          category: "LIFE HACK",
+          title: "Utilizing your Time",
+          image: #imageLiteral(resourceName: "Garden"),
+          description: "All the tools and apps your need to intelligently organize your life the right way.",
+          backgroundColor: .white,
+          cellType: .single,
+          apps: []
+        ),
+        TodayItem(
           category: "Daily List",
           title: topGrossingGroup?.feed.title ?? "",
           image: #imageLiteral(resourceName: "Garden"),
@@ -181,11 +198,11 @@ private extension TodayController {
           apps: topGrossingGroup?.feed.results ?? []
         ),
         TodayItem(
-          category: "LIFE HACK",
-          title: "Utilizing your Time",
-          image: #imageLiteral(resourceName: "Garden"),
-          description: "All the tools and apps your need to intelligently organize your life the right way.",
-          backgroundColor: .white,
+          category: "HOLIDAYS",
+          title: "Travel on a Budget",
+          image: #imageLiteral(resourceName: "Holiday"),
+          description: "Find out all you need to know on how to travel without packing everything!",
+          backgroundColor: #colorLiteral(red: 0.9883298278, green: 0.962456286, blue: 0.7225952148, alpha: 1),
           cellType: .single,
           apps: []
         ),
@@ -197,15 +214,6 @@ private extension TodayController {
           backgroundColor: .white,
           cellType: .multiple,
           apps: gamesGroup?.feed.results ?? []
-        ),
-        TodayItem(
-          category: "HOLIDAYS",
-          title: "Travel on a Budget",
-          image: #imageLiteral(resourceName: "Holiday"),
-          description: "Find out all you need to know on how to travel without packing everything!",
-          backgroundColor: #colorLiteral(red: 0.9883298278, green: 0.962456286, blue: 0.7225952148, alpha: 1),
-          cellType: .single,
-          apps: []
         )
       ]
 
@@ -224,10 +232,19 @@ private extension TodayController {
     let appFullscreenController = AppFullscreenController()
     appFullscreenController.todayItem = items[indexPath.item]
     appFullscreenController.dismissHandler = {
-      self.removeFullscreenView()
+      self.handleAppFullscreenDismissal()
     }
     appFullscreenController.view.layer.cornerRadius = 16
     self.appFullscreenController = appFullscreenController
+
+    /// #1 setup our pan gesture
+    let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleDrag))
+    gesture.delegate = self
+    appFullscreenController.view.addGestureRecognizer(gesture)
+
+    /// #2 add a blue effect view
+
+    /// #3 not to interface with our UITableView scrolling
   }
 
   private func setupStartingCellFrame(_ indexPath: IndexPath) {
@@ -277,6 +294,8 @@ private extension TodayController {
       options: .curveEaseOut,
       animations: {
 
+        self.blurVisualEffectView.alpha = 1
+
         self.anchoredConstaints?.top?.constant = 0
         self.anchoredConstaints?.leading?.constant = 0
         self.anchoredConstaints?.width?.constant = self.view.frame.width
@@ -305,6 +324,20 @@ private extension TodayController {
     beginAnimationAppFullscreen()
 
   }
+
+  @objc private func handleDrag(gesture: UIPanGestureRecognizer) {
+    let translationY = gesture.translation(in: appFullscreenController.view).y
+
+    switch gesture.state {
+    case .changed:
+      let scale = 1 - translationY / 1_000
+      let transform: CGAffineTransform = .init(scaleX: scale, y: scale)
+      self.appFullscreenController.view.transform = transform
+    case .ended:
+      handleAppFullscreenDismissal()
+    default: break
+    }
+  }
 }
 
 extension TodayController: UICollectionViewDelegateFlowLayout {
@@ -319,5 +352,11 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return .init(top: 32, left: 0, bottom: 32, right: 0)
+  }
+}
+
+extension TodayController: UIGestureRecognizerDelegate {
+  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    return true
   }
 }
