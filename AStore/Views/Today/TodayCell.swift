@@ -8,14 +8,14 @@
 
 import UIKit
 
-class TodayCell: UICollectionViewCell {
+class TodayCell: BaseTodayCell {
 
   private let categoryLabel = UILabel(text: "LIFE HACK", font: .boldSystemFont(ofSize: 20))
   private let titleLabel = UILabel(text: "Utilizing your Time", font: .boldSystemFont(ofSize: 28))
   private let imageView = UIImageView(image: #imageLiteral(resourceName: "Garden"))
   private lazy var descriptionLabel = UILabel(text: dummyDescription(), font: .systemFont(ofSize: 16), numberOfLines: 3)
 
-  var todayItem: TodayItem! {
+  override var todayItem: TodayItem! {
     didSet {
       categoryLabel.text = todayItem.category
       titleLabel.text = todayItem.title

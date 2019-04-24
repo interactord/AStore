@@ -82,50 +82,54 @@ class AppsPageController: BaseListController {
     var group3: AppGroup?
 
     /// help you async your data fetches together
-    let dispathGroup = DispatchGroup()
+    let dispatchGroup = DispatchGroup()
 
-    dispathGroup.enter()
+    dispatchGroup.enter()
     Service.shared.fetchGames { appGroup, err in
-      dispathGroup.leave()
       if let err = err {
         print("Fail fetched app group", err)
+        dispatchGroup.leave()
         return
       }
       group1 = appGroup
+      dispatchGroup.leave()
     }
 
-    dispathGroup.enter()
+    dispatchGroup.enter()
     Service.shared.fetchTopGrossing { appGroup, err in
-      dispathGroup.leave()
       if let err = err {
         print("Fail fetched app group", err)
+        dispatchGroup.leave()
         return
       }
+      dispatchGroup.leave()
       group2 = appGroup
     }
 
-    dispathGroup.enter()
+    dispatchGroup.enter()
     Service.shared.fetchAppGroup(urlString: "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/explicit.json") { appGroup, err in
-      dispathGroup.leave()
       if let err = err {
         print("Fail fetched app group", err)
+        dispatchGroup.leave()
         return
       }
       group3 = appGroup
+      dispatchGroup.leave()
     }
 
-    dispathGroup.enter()
+    dispatchGroup.enter()
     Service.shared.fetchSocialApps { apps, err in
-      dispathGroup.leave()
       if let err = err {
         print("Fail fetched social app", err)
+        dispatchGroup.leave()
         return
       }
       self.socialApps = apps ?? []
+      dispatchGroup.leave()
     }
 
     /// completion
-    dispathGroup.notify(queue: .main) {
+    dispatchGroup.notify(queue: .main) {
       print("completed your dispatch group task...")
       self.activityIndicatorView.stopAnimating()
       if let group = group1 {
