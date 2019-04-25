@@ -12,28 +12,38 @@ class MusicController: BaseListController {
 
   private let cellId = "cellId"
   private let footerId = "footerId"
-
-  private let searchTerm = "bts"
-  var isPaginating = false
+  private let searchController = UISearchController(searchResultsController: nil)
+  private var timer: Timer?
+  private let noSearchView = NoSearchView()
+  var searchTerm: String?
+  private var isPaginating = false
   var isDonePagination = false
 
   var results = [SearchResultResponse]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.backgroundColor = .white
 
+    setupSearchBar()
+
+    view.addSubview(noSearchView)
+    noSearchView.fillSuperview()
+
+    collectionView.isHidden = true
+    collectionView.backgroundColor = .white
     collectionView.register(TrackCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.register(
       MusicLoadingFooter.self,
       forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
       withReuseIdentifier: footerId
     )
-
-    fetchData()
   }
 
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    collectionView.isHidden = results.isEmpty
+    noSearchView.isHidden = !results.isEmpty
+
+    print(results.count)
     return results.count
   }
 
@@ -67,16 +77,39 @@ class MusicController: BaseListController {
 
 }
 
-private extension MusicController {
+extension MusicController {
 
-  private func fetchData() {
+  private func setupSearchBar() {
+    definesPresentationContext = true
+    navigationItem.searchController = self.searchController
+    navigationItem.hidesSearchBarWhenScrolling = false
+    searchController.dimsBackgroundDuringPresentation = false
+    searchController.searchBar.delegate = self
+  }
 
-    if isPaginating {
-      return
+  private func removeAllData() {
+    results.removeAll()
+    DispatchQueue.main.async {
+      self.collectionView.reloadData()
+    }
+  }
+
+  private func fetchData(isRefrashed: Bool = false) {
+
+    guard
+      let searchTerm = searchTerm, !searchTerm.isEmpty
+      else {
+        removeAllData()
+        return
     }
 
-    isPaginating = true
+    if isRefrashed {
+      isPaginating = false
+    }
 
+    if isPaginating { return }
+    isPaginating = true
+    noSearchView.activityIndicatorView.startAnimating()
     let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&offset=\(results.count)&limit=25"
     Service.shared.fetchGenericJSONData(urlString: urlString) { (searchResult: SearchResult?, err) in
       if let err = err {
@@ -98,6 +131,7 @@ private extension MusicController {
 
       DispatchQueue.main.async {
         self.collectionView.reloadData()
+        self.noSearchView.activityIndicatorView.stopAnimating()
       }
       self.isPaginating = false
     }
@@ -113,5 +147,22 @@ extension MusicController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     let height: CGFloat = isDonePagination ? 0 : 100
     return .init(width: view.frame.width, height: height)
+  }
+}
+
+extension MusicController: UISearchBarDelegate {
+
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    /// interoduce some delay before performing the search
+    // throttling the search
+
+    timer?.invalidate()
+    timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+      print(searchText)
+      self.searchTerm = searchText
+      self.isPaginating = false
+      self.removeAllData()
+      self.fetchData(isRefrashed: true)
+    }
   }
 }
