@@ -13,6 +13,8 @@ class AppsPageController: BaseListController {
   private let cellId = "cellId"
   private let headerId = "headerId"
 
+  let avatarImageView = UIImageView(image: #imageLiteral(resourceName: "Avatar"))
+
   let activityIndicatorView: UIActivityIndicatorView = {
     let aiv = UIActivityIndicatorView(style: .whiteLarge)
     aiv.color = .black
@@ -27,8 +29,10 @@ class AppsPageController: BaseListController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.backgroundColor = .white
 
+    setUpNavigationUI()
+
+    collectionView.backgroundColor = .white
     collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
 
@@ -69,10 +73,49 @@ class AppsPageController: BaseListController {
 
     return appsGroupCell
   }
+
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let redController = UIViewController()
     redController.view.backgroundColor = .red
     navigationController?.pushViewController(redController, animated: true)
+  }
+
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard let height = navigationController?.navigationBar.frame.height else {
+      return
+    }
+    let transform = MathTranslation().getScaleAndPosition(for: height)
+    avatarImageView.transform = CGAffineTransform.identity
+      .scaledBy(x: transform.scale, y: transform.scale)
+      .translatedBy(x: transform.translationX, y: transform.translationY)
+  }
+}
+
+private extension AppsPageController {
+
+  private func setUpNavigationUI() {
+    guard let navigatioBar = navigationController?.navigationBar else {
+      return
+    }
+    navigatioBar.addSubview(avatarImageView)
+    avatarImageView.layer.cornerRadius = ImageConstant.imageSizeForLargeState / 2
+    avatarImageView.clipsToBounds = true
+    avatarImageView.anchor(
+      top: nil,
+      leading: nil,
+      bottom: navigatioBar.bottomAnchor,
+      trailing: navigatioBar.trailingAnchor,
+      padding: .init(
+        top: 0,
+        left: 0,
+        bottom: ImageConstant.imageBottomMarginForLargeState,
+        right: ImageConstant.imageRightMargin
+      ),
+      size: .init(
+        width: ImageConstant.imageSizeForLargeState,
+        height: ImageConstant.imageSizeForLargeState
+      )
+    )
   }
 
   private func fetchData() {
@@ -146,7 +189,6 @@ class AppsPageController: BaseListController {
 
       self.collectionView.reloadData()
     }
-
   }
 }
 

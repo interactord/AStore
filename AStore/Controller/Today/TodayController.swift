@@ -11,6 +11,7 @@ import UIKit
 class TodayController: BaseListController {
 
   static let cellSize: CGFloat = 466
+  let headerId = "headerId"
 
   var startingFrame: CGRect?
   var appFullscreenController: AppFullscreenController!
@@ -45,6 +46,11 @@ class TodayController: BaseListController {
     collectionView.backgroundColor = #colorLiteral(red: 0.948936522, green: 0.9490727782, blue: 0.9489068389, alpha: 1)
     collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayItem.CellType.single.rawValue)
     collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
+    collectionView.register(
+      TodayHeaderCell.self,
+      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+      withReuseIdentifier: headerId
+    )
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +74,17 @@ class TodayController: BaseListController {
 
     (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
     return cell
+  }
+
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+    guard let header = view as? TodayHeaderCell else {
+      return view
+    }
+    print(Date.convertFormat())
+
+    header.dateLabel.text = Date.convertFormat()
+    return header
   }
 
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -240,14 +257,9 @@ private extension TodayController {
     appFullscreenController.view.layer.cornerRadius = 16
     self.appFullscreenController = appFullscreenController
 
-    /// #1 setup our pan gesture
     let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleDrag))
     gesture.delegate = self
     appFullscreenController.view.addGestureRecognizer(gesture)
-
-    /// #2 add a blue effect view
-
-    /// #3 not to interface with our UITableView scrolling
   }
 
   private func setupStartingCellFrame(_ indexPath: IndexPath) {
@@ -363,6 +375,10 @@ private extension TodayController {
 
 extension TodayController: UICollectionViewDelegateFlowLayout {
 
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return .init(width: view.frame.width, height: 85)
+  }
+
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return .init(width: view.frame.width - 48, height: TodayController.cellSize)
   }
@@ -372,7 +388,7 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    return .init(top: 32, left: 0, bottom: 32, right: 0)
+    return .init(top: 10, left: 0, bottom: 32, right: 0)
   }
 }
 
