@@ -8,7 +8,7 @@
 
 <img src="PreviewSreens/ios11-app-store-design-ui.jpg" width="100%" />
 
-iOS 앱스토어의 기능과 디자인 그리고 추가로 음악검색 앱읆 만들었습니다.
+iOS 앱스토어의 기능과 디자인 그리고 추가로 음악검색 앱을 개발합니다.
 
 ## 필수 프로그램
 해당 프로젝트는 Swift5.0 기반으로 작성되어 있어, 해당 프로그램이 필수로 설치되어 있어야 합니다.
@@ -31,7 +31,7 @@ $POREJCT_ROOT open AStore.xcworkspace
 - [-] JSON Api Network
 - [SD WebImage] 이미지 다운로드
 
-더 많은 정보는 Wiki를 참고 해주세요
+더 많은 정보는 [Wiki-Story](https://github.com/interactord/AStore/wiki/Story)를 참고 해주세요
 
 ## 정보
 
